@@ -3,6 +3,8 @@ import Header from '../Header'
 import QuestionsSolved from '../analytics/QuestionsSolved'
 import BarGraph from '../analytics/BarGraph'
 import RadarGraph from '../analytics/RadarGraph'
+import Calendar from 'react-calendar'
+// import '../../css/ReactCalendar.css'
 
 export default class Profile extends Component {
     render() {
@@ -13,10 +15,10 @@ export default class Profile extends Component {
 
 
                     <div className="row">
-                        <div className="col-9 pl-0 pr-16">
+                        <div className="col-9 pl-0 pr-16 h-100">
                             <div className="row mb-32">
                                 <div className="col pr-16">
-                                    <div className="bg-secondary-black gray p-16 br-5 h-100">
+                                    <div className="bg-secondary-black gray p-16 br-5 ">
                                         <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                                             Ranking
                                         </div>
@@ -24,7 +26,7 @@ export default class Profile extends Component {
                                             <div className="col-7">
                                                 <span className="fw-400 white">Your Rank:</span>
                                                 <span className="f-24 orange">
-                                                    3<sub>rd</sub>
+                                                    {' '}3<sub>rd</sub>
                                                 </span>
                                             </div>
                                             <div className="col-5 legend pl-16" style={{ borderLeft: "1px solid #565656" }}>
@@ -52,6 +54,12 @@ export default class Profile extends Component {
                                     Weekly Report
                                 </div>
                                 <RadarGraph />
+                            </div>
+                            <div className="bg-secondary-black gray p-16 br-5 mb-32">
+                                {/* <div className="filter-heading mb-8 f-16 fw-500 secondary-gray">
+                                    Weekly Report
+                                </div> */}
+                                <Calendar onClickDay={(value, event) => alert('Clicked day: ', value)} showNeighboringMonth={false}/>
                             </div>
                         </div>
                     </div>

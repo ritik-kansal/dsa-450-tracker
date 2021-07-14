@@ -51,7 +51,7 @@ export default class BarGraph extends Component {
     }
     render() {
         return (
-            <div class="pl-16 pr-16 bg-secondary-black br-5">
+            <div class="p-16 pt-32 bg-secondary-black br-5">
                 <Bar data={
                         this.state.chartData
                     }
