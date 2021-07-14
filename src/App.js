@@ -5,6 +5,7 @@ import './css/Main.css';
 import Index from './components/pages/Index';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
+import Profile from './components/pages/Profile';
 import {
     BrowserRouter as Router,
     Switch,
@@ -69,6 +70,9 @@ class App extends Component {
                     </Route>
                     <Route path="/signup">
                         <SignUp />
+                    </Route>
+                    <Route path="/profile">
+                        <Profile />
                     </Route>
                     <Route path="/">
                         <Index />

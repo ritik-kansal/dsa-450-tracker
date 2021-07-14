@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Doughnut, Bar, Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 class QuestionsSolved extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class QuestionsSolved extends Component {
     }
     render() {
         return (
-            <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5 mb-32">
+            <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5">
                 <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                     Questions
                 </div>
@@ -48,7 +48,7 @@ class QuestionsSolved extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6 legend pl-32">
+                    <div className="col-6 legend pl-16">
                         <div>
                             <span className="green float-start">Easy</span><span className="value ms-auto float-end">100</span>
                         </div>
