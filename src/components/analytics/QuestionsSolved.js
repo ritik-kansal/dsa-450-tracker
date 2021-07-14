@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Doughnut, Bar } from 'react-chartjs-2';
+import { Doughnut, Bar, Pie } from 'react-chartjs-2';
 
 class QuestionsSolved extends Component {
     constructor(props) {
@@ -15,10 +15,11 @@ class QuestionsSolved extends Component {
                         backgroundColor: [
                             'rgba(82, 196, 26, 1)', 'rgba(245, 132, 70, 1)', 'rgba(245, 34, 45, 1)', 'rgba(245, 34, 45, 0)',
                         ],
-                        hoverOffset: 4
+                        hoverOffset: 4,
                     }
                 ]
             }
+
         }
     }
     render() {
@@ -30,9 +31,19 @@ class QuestionsSolved extends Component {
                 <div className="row align-items-center">
                     <div className="col-6">
                         <div className="questions-pie f-12 position-relative">
-                            {/* <Bar data={this.state.chartData} />; */}
+                            <Doughnut data={this.state.chartData} options={{
+                                cutout: "80%",
+                                offset: 5,
+                                borderWidth: 0,
+                                plugins: {
+                                    legend: {
+                                        display: false
+                                    }
+                                }
+                            }} />
                             <div className="number gray text-center">
                                 <span className="f-32" style={{ borderBottom: "1px solid #565656" }}>308</span>
+                                <br />
                                 <span className="f-16">450</span>
                             </div>
                         </div>
