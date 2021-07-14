@@ -1,0 +1,224 @@
+// colors
+$colors: ("black": #0A0A0A,"orange": #F58446,"white": #fff,"gray": #565656,"secondary-black": #141316,"tertiory-black": #1D1C1F,"red": #F5222D,"green": #52C41A,"secondary-gray": #AFAFAF);
+
+@each $color_name,$color in $colors{
+    .#{$color_name}{
+        color:$color !important;
+    }
+    .bg-#{$color_name}{
+        background-color:$color !important;
+    }
+    // .#{$color_name}:hover{
+    //     color:$color;
+    // }
+}
+
+// colors
+
+// spacing
+$margin_top_sizes: 0;
+$margin_bottom_sizes: 8,16,20,24,32,40,60;
+$margin_right_sizes: 0,8,12;
+$margin_left_sizes: 0;
+$padding_top_sizes: 8,12,16,32,100;
+$padding_bottom_sizes: 12,16,32;
+$padding_right_sizes: 0,16;
+$padding_left_sizes: 0,16,32;
+
+$spacing :
+            "mt" "margin-top" $margin_top_sizes,
+            "mr" "margin-right" $margin_right_sizes,
+            "mb" "margin-bottom" $margin_bottom_sizes,
+            "ml" "margin-left" $margin_left_sizes,
+            "pt" "padding-top" $padding_top_sizes,
+            "pb" "padding-bottom" $padding_bottom_sizes,
+            "pr" "padding-right" $padding_right_sizes,
+            "pl" "padding-left" $padding_left_sizes;
+
+@each $class_name,$property,$domain in $spacing{
+    @each $size in $domain{
+        .#{$class_name}-#{$size}{
+            #{$property}:#{$size}px !important;
+        }
+    }
+}
+
+.p-16{
+    padding: 16px;
+}
+
+$border_radius:5;
+@each $radius in $border_radius{
+    .br-#{$radius}{
+        border-radius: #{$radius}px;
+    }
+}
+
+.w-65{
+    width: 65%;
+}
+// spacing
+
+
+// fonts
+$font_weight:400,500,600,700,800;
+$fonts:8,12,16,20,24,32,48;
+
+@each $weight in $font_weight{
+    .fw-#{$weight}{
+        font-weight: #{$weight};
+    }
+}
+
+@each $font in $fonts{
+    .f-#{$font}{
+        font-size: #{$font}px;
+    }
+}
+
+$font_family:'Montserrat', sans-serif;
+
+
+body{
+    font-family: $font_family;
+    background-color: map-get($colors, "black");
+}
+
+
+.r-nav {
+    .navbar-nav{
+        .nav-link{
+            color: map-get($map: $colors, $key: "gray");
+            padding-left: 18px;
+            padding-right: 18px;
+            &.active,&:hover{
+                color: map-get($map: $colors, $key: "orange");
+                border-bottom: 1px solid map-get($map: $colors, $key: "orange");
+            }
+            
+        }
+    }
+
+}
+.form-control{
+    border: none;
+}
+input[type="submit"]{
+    border: none;
+}
+.gray-border{
+    border: 1px solid map-get($colors, "gray");
+    &:hover{
+        border: 1px solid map-get($colors, "orange");
+    }
+}
+a{
+    text-decoration: none;
+}
+.secondary-gray:hover{
+    color: map-get($map: $colors, $key: "secondary-gray");
+}
+
+.r-tabs{
+    .col{
+        cursor: pointer;
+        &:hover{
+            color:map-get($map: $colors, $key: "orange")
+        }
+    }
+}
+
+.filter{
+    padding: 4px 8px;
+    border-radius: 5px;
+    margin:0 8px 8px 0;
+    display: inline-block;
+    background-color: map-get($map: $colors, $key: "tertiory-black");
+    color: map-get($map: $colors, $key: "gray");
+    cursor: pointer;
+    &.selected,&:hover{
+        background-color: map-get($map: $colors, $key: "orange");
+        color: map-get($map: $colors, $key: "white");
+    }
+    
+}
+
+.question-box{
+    border-radius: 5px;
+    padding: 12px 24px;
+    background-color: map-get($map: $colors, $key: "secondary-black");
+    margin-bottom: 32px;
+    .question{
+        color: map-get($map: $colors, $key: "white");
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+    .status,.friends-stats{
+        font-size: 12px;
+        font-weight: 500;
+        
+        .r-radio-label{
+            display: inline-block;
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            margin-right: 12px;
+            cursor: pointer;
+            font-size: 12px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            input{
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+                &:checked{
+                    ~ .r-radio{
+                        background-color: map-get($map: $colors, $key: "orange");
+                        &:after{
+                            display: block;
+                        }
+                    }
+                }
+            }
+            .r-radio{
+                position: absolute;
+                top: 3px;
+                left: 3px;
+                height: 12px;
+                width: 12px;
+                background-color: transparent;
+                border-radius: 50%;
+                border: 1px solid map-get($map: $colors, $key: "orange");
+
+            }
+            &:hover{
+                input{
+                    ~ .r-radio{
+                        background-color: map-get($map: $colors, $key: "orange");
+                    }
+                }
+            }
+
+        }
+    }
+    .footer{
+        border-top: 1px solid map-get($map: $colors, $key: "gray");
+    }
+}
+
+.questions-pie{
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 7.2px rgba(0, 0, 0, 1);
+}
+
+.number{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
