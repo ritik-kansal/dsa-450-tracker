@@ -1,11 +1,11 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 export default function Header(props) {
     return (
         <div>
             <nav className="navbar r-nav navbar-expand-lg navbar-dark bg-secondary-black pt-16 pb-16">
                 <div className="container">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <Link className="navbar-brand" to="/">Navbar</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -15,21 +15,21 @@ export default function Header(props) {
                                 <>
                                     <ul className="navbar-nav mx-auto fw-600 f-12">
                                         <li className="nav-item">
-                                            <a className="nav-link active" aria-current="page" href="#">Ques</a>
+                                            <Link className="nav-link active" aria-current="page" to="/">Ques</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" aria-current="page" href="#">Code</a>
+                                            <Link className="nav-link" aria-current="page" to="#">Code</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" aria-current="page" href="#">Performance</a>
+                                            <Link className="nav-link" aria-current="page" to="/profile">Performance</Link>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" aria-current="page" href="#">Friends</a>
+                                            <Link className="nav-link" aria-current="page" to="#">Friends</Link>
                                         </li>
                                     </ul>
                                     <ul className="navbar-nav fw-600 f-12">
                                         <li className="nav-item">
-                                            <a className="nav-link pr-0" aria-current="page" href="#">Logout</a>
+                                            <Link className="nav-link pr-0" aria-current="page" to="/signin">Logout</Link>
                                         </li>
                                     </ul>
 
@@ -37,16 +37,16 @@ export default function Header(props) {
                             ) : (
                                 props.signUp ? (
                                     <>
-                                        <ul class="navbar-nav ms-auto">
-                                            <li class="nav-item bg-orange pr-36 pl-36 br-5">
-                                                <a class="nav-link white" aria-current="page" href="#">Sign Up</a>
+                                        <ul className="navbar-nav ms-auto">
+                                            <li className="nav-item bg-orange pr-36 pl-36 br-5">
+                                                <Link className="nav-link white" aria-current="page" to="/">Sign Up</Link>
                                             </li>
                                         </ul>
                                     </>
                                 ) : <>
-                                    <ul class="navbar-nav ms-auto">
-                                        <li class="nav-item bg-orange pr-36 pl-36 br-5">
-                                            <a class="nav-link white" aria-current="page" href="#">Sign In</a>
+                                    <ul className="navbar-nav ms-auto">
+                                        <li className="nav-item bg-orange pr-36 pl-36 br-5">
+                                            <Link className="nav-link white" aria-current="page" to="/">Sign In</Link>
                                         </li>
                                     </ul>
                                 </>

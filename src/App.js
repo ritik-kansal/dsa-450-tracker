@@ -10,12 +10,13 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
 } from "react-router-dom";
+import Cookies from 'universal-cookie';
+import axios from 'axios'
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             chartData: {}
         }
@@ -61,21 +62,74 @@ class App extends Component {
             }
         });
     }
+    test = ()=>{
+        console.log("hi")
+    }
+    saveToken = (data,method,url)=>{
+        // var data = JSON.stringify(data);
+        const cookies = new Cookies();
+        var token = cookies.get('token')
+        var config = {
+            method: method,
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorizarion': 'Token '+token
+            },
+            data: data,
+        };
+
+        axios(config)
+            .then(response => {
+                console.log(response.data)
+                cookies.set('token', response.data.token, { 
+                    path: '/',
+                    secure:true,
+                    sameSite:'strict'
+                    
+                 });
+                })
+                // .catch(error => {
+                //     console.log(error.data);
+                // });
+    }
+    authcall(data,method,url){
+        var data = JSON.stringify(data);
+        const cookies = new Cookies();
+        var token = cookies.get('token')
+        var config = {
+            method: method,
+            url: url,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorizarion': 'Token '+token
+            },
+            data: data,
+        };
+
+        axios(config)
+            .then(function (response) {
+                console.log(response.data)
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+            });
+    }
     render() {
         return (
             <Router>
                 <Switch>
-                    <Route path="/signin">
-                        <SignIn />
+                    <Route exact path="/signin">
+                        <SignIn saveToken={this.saveToken} test={this.test} />
                     </Route>
-                    <Route path="/signup">
-                        <SignUp />
+                    <Route exact path="/signup">
+                        <SignUp saveToken={this.saveToken} />
                     </Route>
-                    <Route path="/profile">
-                        <Profile />
+                    <Route exact path="/profile">
+                        <Profile authCall={this.authcall} />
                     </Route>
-                    <Route path="/">
-                        <Index />
+                    <Route exact path="/">
+                        <Index authCall={this.authcall} />
                     </Route>
                 </Switch>
             </Router>

@@ -18,7 +18,7 @@ export default class Profile extends Component {
                         <div className="col-9 pl-0 pr-16 h-100">
                             <div className="row mb-32">
                                 <div className="col pr-16">
-                                    <div className="bg-secondary-black gray p-16 br-5 ">
+                                    <div className="bg-secondary-black gray p-16 br-5 h-100">
                                         <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                                             Ranking
                                         </div>
