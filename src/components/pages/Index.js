@@ -7,6 +7,21 @@ import Chart from '../Chart';
 
 
 export default class Index extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            url: "http://127.0.0.1:8000/api/get_question/1",
+        }
+        
+    }
+
+    componentDidMount(){
+        var data = JSON.stringify({
+            
+        });
+        console.log(this.props.apiCall(data,"get",this.state.url))
+    }
+
     render() {
         return (
             <>

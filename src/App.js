@@ -6,12 +6,7 @@ import Index from './components/pages/Index';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import Profile from './components/pages/Profile';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    withRouter
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 
@@ -19,7 +14,8 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: {}
+            chartData: {},
+            api: {}
         }
     }
 
@@ -66,37 +62,32 @@ class App extends Component {
     test = () => {
         console.log("hi")
     }
-    saveToken = (data, method, url) => {
-        // var data = JSON.stringify(data);
+    saveToken = (data, method, url) => { // var data = JSON.stringify(data);
         const cookies = new Cookies();
-        var token = cookies.get('token')
+        // var token = cookies.get('token')
         var config = {
             method: method,
             url: url,
             headers: {
-                'Content-Type': 'application/json',
-                // 'Authorizarion': 'Token '+token
+                'Content-Type': 'application/json'
             },
-            data: data,
+            data: data
+
         };
 
-        axios(config)
-            .then(response => {
-                console.log(response.data)
-                cookies.set('token', response.data.token, {
-                    path: '/',
-                    secure: true,
-                    sameSite: 'strict'
+        axios(config).then(response => {
+            cookies.set('token', response.data.token, {
+                path: '/',
+                secure: true,
+                sameSite: 'strict'
 
-                });
-                 this.props.history.push("/");
-            })
-        .catch(error => {
+            });
+            this.props.history.push("/");
+        }).catch(error => {
             console.log(error.response.data);
         });
     }
-    authcall = (data, method, url) => {
-        var data = JSON.stringify(data);
+    apiCall = (data, method, url) => {
         const cookies = new Cookies();
         var token = cookies.get('token')
         var config = {
@@ -104,34 +95,58 @@ class App extends Component {
             url: url,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorizarion': 'Token ' + token
+                'Authorization': 'Token ' + token
             },
-            data: data,
+            data: data
+
         };
 
-        axios(config)
-            .then(function (response) {
-                console.log(response.data)
+        axios(config).then((response) =>{
+            this.setState({
+                api: {
+                    success: 1,
+                    apiData: response,
+                    apiError: {}
+                }
             })
-            .catch(function (error) {
-                console.log(error.response.data);
-            });
+        }).catch((error) =>{
+            this.setState({
+                api: {
+                    success: 0,
+                    apiData: {},
+                    apiError: error
+                }
+            })
+        });
+
+        return this.state.api
     }
     render() {
         return (
-
+            // wrapped in router in index.js 
             <Switch>
                 <Route exact path="/signin">
-                    <SignIn saveToken={this.saveToken} test={this.test} />
+                    <SignIn saveToken={
+                        this.saveToken
+                    }
+                        test={
+                            this.test
+                        } />
                 </Route>
                 <Route exact path="/signup">
-                    <SignUp saveToken={this.saveToken} />
+                    <SignUp saveToken={
+                        this.saveToken
+                    } />
                 </Route>
                 <Route exact path="/profile">
-                    <Profile authCall={this.authcall} />
+                    <Profile apiCall={
+                        this.apiCall
+                    } />
                 </Route>
                 <Route exact path="/">
-                    <Index authCall={this.authcall} />
+                    <Index apiCall={
+                        this.apiCall
+                    } />
                 </Route>
             </Switch>
         );
