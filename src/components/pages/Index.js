@@ -68,8 +68,8 @@ export default class Index extends Component {
                             this.state.api.success ? 
                                 // console.log(this.state.api.apiData)
                                 this.state.api.apiData.data.questions.map((question,i)=>{
-                                    console.log(question.link)
-                                return <Question key={i} question={question.link}/>}) 
+                                    let level = question.level==2 ? "Hard": question.level==1?"Medium" : "Easy"
+                                return <Question key={i} question={question.link} level={level} filter={question.name} />}) 
                             : ""}
                             {/* <Question question={question}/>
                             <Question question={question}/> */}

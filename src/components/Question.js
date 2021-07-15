@@ -8,8 +8,13 @@ export default function Question(props) {
                     {props.question}
                 </div>
                 <div className="mb-16">
-                    <span className="filter f-12">Medium</span>
-                    <span className="filter f-12">Array</span>
+                    {/* {props.filter.map((f,i)=>{
+                        
+                        <span className="filter f-12">{f}</span>
+                    })} */}
+                    {/* {console.log(props)} */}
+                    <span className="filter f-12">{props.level}</span>
+                    <span className="filter f-12">{props.filter}</span>
                 </div>
                 <div className="footer pt-8">
                     <div className="status white">
