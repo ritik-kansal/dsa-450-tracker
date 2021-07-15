@@ -101,25 +101,9 @@ class App extends Component {
 
         };
 
-        axios(config).then((response) =>{
-            this.setState({
-                api: {
-                    success: 1,
-                    apiData: response,
-                    apiError: {}
-                }
-            })
-        }).catch((error) =>{
-            this.setState({
-                api: {
-                    success: 0,
-                    apiData: {},
-                    apiError: error
-                }
-            })
-        });
+        return axios(config)
 
-        return this.state.api
+        // return this.state.api
     }
     render() {
         return (

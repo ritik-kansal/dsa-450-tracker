@@ -11,6 +11,9 @@ export default class Index extends Component {
         super(props)
         this.state = {
             url: "http://127.0.0.1:8000/api/get_question/1",
+            api:{
+                success:false
+            }
         }
         
     }
@@ -19,7 +22,22 @@ export default class Index extends Component {
         var data = JSON.stringify({
             
         });
-        console.log(this.props.apiCall(data,"get",this.state.url))
+        const promise = (this.props.apiCall(data,"get",this.state.url))
+        promise.then((response) =>{
+            this.setState({
+                api: {
+                    success: true,
+                    apiData: response,
+                }
+            })
+        }).catch((error) =>{
+            this.setState({
+                api: {
+                    success: false,
+                    apiError: error
+                }
+            })
+        });
     }
 
     render() {
@@ -46,9 +64,15 @@ export default class Index extends Component {
 
                         </div>
                         <div className="col-9 pl-16 pr-0">
-                            <Question/>
-                            <Question/>
-                            <Question/>
+                            {
+                            this.state.api.success ? 
+                                // console.log(this.state.api.apiData)
+                                this.state.api.apiData.data.questions.map((question,i)=>{
+                                    console.log(question.link)
+                                return <Question key={i} question={question.link}/>}) 
+                            : ""}
+                            {/* <Question question={question}/>
+                            <Question question={question}/> */}
                         </div>
                     </div>
                 </div>

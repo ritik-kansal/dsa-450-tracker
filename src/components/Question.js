@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function Question() {
+export default function Question(props) {
     return (
         <div>
             <div className="question-box">
                 <div className="question">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic itaque quia quasi aperiam nobis perspiciatis!
+                    {props.question}
                 </div>
                 <div className="mb-16">
                     <span className="filter f-12">Medium</span>
