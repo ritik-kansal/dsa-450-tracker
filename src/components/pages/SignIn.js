@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import Header from '../Header'
 import SignSignupContent from '../SignSignupContent'
-import { useHistory } from 'react-router'
+import { withRouter } from "react-router-dom";
 // import Cookies from 'universal-cookie';
 // import axios from 'axios'
 
 
-export default class SignIn extends Component {
+class SignIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -26,9 +26,7 @@ export default class SignIn extends Component {
             "username": this.state.data.username,
             "password": this.state.data.password
         });
-        (this.props.saveToken(data,"post",this.state.url))
-
-        
+        this.props.saveToken(data,"post",this.state.url)
     }
 
     handle(e) {
@@ -82,3 +80,4 @@ export default class SignIn extends Component {
         )
     }
 }
+export default withRouter(SignIn);

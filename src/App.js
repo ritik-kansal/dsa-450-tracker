@@ -10,6 +10,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    withRouter
 } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import axios from 'axios'
@@ -62,10 +63,10 @@ class App extends Component {
             }
         });
     }
-    test = ()=>{
+    test = () => {
         console.log("hi")
     }
-    saveToken = (data,method,url)=>{
+    saveToken = (data, method, url) => {
         // var data = JSON.stringify(data);
         const cookies = new Cookies();
         var token = cookies.get('token')
@@ -82,18 +83,19 @@ class App extends Component {
         axios(config)
             .then(response => {
                 console.log(response.data)
-                cookies.set('token', response.data.token, { 
+                cookies.set('token', response.data.token, {
                     path: '/',
-                    secure:true,
-                    sameSite:'strict'
-                    
-                 });
-                })
-                // .catch(error => {
-                //     console.log(error.data);
-                // });
+                    secure: true,
+                    sameSite: 'strict'
+
+                });
+                 this.props.history.push("/");
+            })
+        .catch(error => {
+            console.log(error.response.data);
+        });
     }
-    authcall(data,method,url){
+    authcall = (data, method, url) => {
         var data = JSON.stringify(data);
         const cookies = new Cookies();
         var token = cookies.get('token')
@@ -102,7 +104,7 @@ class App extends Component {
             url: url,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorizarion': 'Token '+token
+                'Authorizarion': 'Token ' + token
             },
             data: data,
         };
@@ -117,24 +119,23 @@ class App extends Component {
     }
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route exact path="/signin">
-                        <SignIn saveToken={this.saveToken} test={this.test} />
-                    </Route>
-                    <Route exact path="/signup">
-                        <SignUp saveToken={this.saveToken} />
-                    </Route>
-                    <Route exact path="/profile">
-                        <Profile authCall={this.authcall} />
-                    </Route>
-                    <Route exact path="/">
-                        <Index authCall={this.authcall} />
-                    </Route>
-                </Switch>
-            </Router>
+
+            <Switch>
+                <Route exact path="/signin">
+                    <SignIn saveToken={this.saveToken} test={this.test} />
+                </Route>
+                <Route exact path="/signup">
+                    <SignUp saveToken={this.saveToken} />
+                </Route>
+                <Route exact path="/profile">
+                    <Profile authCall={this.authcall} />
+                </Route>
+                <Route exact path="/">
+                    <Index authCall={this.authcall} />
+                </Route>
+            </Switch>
         );
     }
 }
 
-export default App;
+export default withRouter(App);
