@@ -5,13 +5,12 @@ class QuestionsSolved extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            // chartData: props.chartData
             chartData: {
                 datasets: [
                     {
                         label: 'My First Dataset',
-                        data: [
-                            100, 120, 80, 150
-                        ],
+                        data: props.chartData,
                         backgroundColor: [
                             'rgba(82, 196, 26, 1)', 'rgba(245, 132, 70, 1)', 'rgba(245, 34, 45, 1)', 'rgba(245, 34, 45, 0)',
                         ],
@@ -22,6 +21,11 @@ class QuestionsSolved extends Component {
 
         }
     }
+
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps.question_update
+    }
+
     render() {
         return (
             <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5">
@@ -50,13 +54,13 @@ class QuestionsSolved extends Component {
                     </div>
                     <div className="col-6 legend pl-16">
                         <div>
-                            <span className="green float-start">Easy</span><span className="value ms-auto float-end">100</span>
+                            <span className="green float-start">Easy</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
                         </div>
                         <div>
-                            <span className="orange float-start">Medium</span><span className="value ms-auto float-end">120</span>
+                            <span className="orange float-start">Medium</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
                         </div>
                         <div>
-                            <span className="red float-start">Hard</span><span className="value ms-auto float-end">80</span>
+                            <span className="red float-start">Hard</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
                         </div>
                     </div>
                 </div>

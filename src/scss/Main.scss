@@ -142,8 +142,8 @@ a {
     background-color: map-get($map: $colors, $key: "tertiory-black");
     color: map-get($map: $colors, $key: "gray");
     cursor: pointer;
-    &.selected,
-    &:hover {
+    &.selected
+    {
         background-color: map-get($map: $colors, $key: "orange");
         color: map-get($map: $colors, $key: "white");
     }

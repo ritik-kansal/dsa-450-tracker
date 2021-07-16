@@ -284,7 +284,7 @@ a {
   color: #565656;
   cursor: pointer;
 }
-.filter.selected, .filter:hover {
+.filter.selected {
   background-color: #F58446;
   color: #fff;
 }
