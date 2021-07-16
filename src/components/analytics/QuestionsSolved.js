@@ -23,7 +23,7 @@ class QuestionsSolved extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        return nextProps.question_update
+        return nextProps.question_chart_update
     }
 
     render() {

@@ -15,7 +15,7 @@ export default class Index extends Component {
                 success: false
             },
             child_conditions: {
-                question_update: false,
+                question_chart_update: false,
                 filter_update: false,
                 questions_update: false,
             },
@@ -59,7 +59,7 @@ export default class Index extends Component {
         this.setState({
             filters: newFilters,
             child_conditions: {
-                question_update: false,
+                question_chart_update: false,
                 filter_update: false,
                 questions_update: true,
             }
@@ -84,19 +84,18 @@ export default class Index extends Component {
                 this.setState({
                     api: newApi,
                     child_conditions: {
-                        question_update: false,
+                        question_chart_update: false,
                         filter_update: false,
                         questions_update: true,
                     }
                 })
-                // console.log(response)
             }).catch((error) => {
-                // this.setState({
-                //     api: {
-                //         success: false,
-                //         apiError: error
-                //     }
-                // })
+                this.setState({
+                    api: {
+                        success: false,
+                        apiError: error
+                    }
+                })
             });
         
         }
@@ -132,8 +131,8 @@ render() {
                         {
                             this.state.api.success ?
                                 (
-                                    // <QuestionsSolved chartData={[0, 1, 2, 0]} question_update={this.state.child_conditions.question_update} />
-                                    <QuestionsSolved chartData = {this.state.api.apiData.data.questions_solved.difficulty_levels} question_update={this.state.child_conditions.question_update} />
+                                    // <QuestionsSolved chartData={[0, 1, 2, 0]} question_chart_update={this.state.child_conditions.question_chart_update} />
+                                    <QuestionsSolved chartData = {this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} />
                                 )
                                 : ""}
 
@@ -144,7 +143,7 @@ render() {
                                 // console.log(this.state.api.apiData)
                                 this.state.api.apiData.data.questions_data.questions.map((question, i) => {
                                     let level = question.level == 2 ? "Hard" : question.level == 1 ? "Medium" : "Easy"
-                                    return <Question key={i} question={question.link} level={level} filter={question.name} />
+                                    return <Question key={i} question={question.link} level={level} filter={question.topic_name} />
                                 })
                                 : ""}
                         {/* <Question question={question}/>
