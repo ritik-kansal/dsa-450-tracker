@@ -10,7 +10,8 @@ class QuestionsSolved extends Component {
                 datasets: [
                     {
                         label: 'My First Dataset',
-                        data: props.chartData,
+                        // data: props.chartData,
+                        data: [],
                         backgroundColor: [
                             'rgba(82, 196, 26, 1)', 'rgba(245, 132, 70, 1)', 'rgba(245, 34, 45, 1)', 'rgba(245, 34, 45, 0)',
                         ],
@@ -22,7 +23,15 @@ class QuestionsSolved extends Component {
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    componentDidMount() {
+        var newChartData = this.state.chartData
+        newChartData.datasets[0].data = this.props.chartData
+        this.setState({
+            chartData: newChartData
+        });
+        console.log("test", this.state.chartData)
+    }
+    shouldComponentUpdate(nextProps, nextState) {
         return nextProps.question_chart_update
     }
 

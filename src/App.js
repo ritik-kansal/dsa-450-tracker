@@ -90,7 +90,7 @@ class App extends Component {
     apiCall = (data, method, url) => {
         const cookies = new Cookies();
         var token = cookies.get('token')
-        console.log("in ",data)
+        // console.log("in ",data)
         var config = {
             method: method,
             url: url,

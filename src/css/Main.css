@@ -264,6 +264,13 @@ a {
   text-decoration: none;
 }
 
+.question-link {
+  color: #fff;
+}
+.question-link:hover {
+  color: #fff;
+}
+
 .secondary-gray:hover {
   color: #AFAFAF;
 }
