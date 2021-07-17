@@ -54,24 +54,17 @@ export default class Index extends Component {
         else {
             newFilters.delete(e.currentTarget.getAttribute('topic_id'))
         }
-        // console.log(newFilters)
-        // newFilters.push();
         this.setState({
-            filters: newFilters,
-            
+            filters: newFilters,  
         }, () => {
-            var filters = this.state.filters
             var data = {
-                topic_id: [...filters],
-
+                topic_id: [...this.state.filters],
             }
-            var promise;
-            // console.log(filters.size)
-            if (filters.size != 0) {
-                promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general'))
+            if (this.state.filters.size != 0) {
+                var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general'))
             }
             else {
-                promise = (this.props.apiCall(data, "get", 'http://127.0.0.1:8000/api/get_question/1'))
+                var promise = (this.props.apiCall(data, "get", 'http://127.0.0.1:8000/api/get_question/1'))
             }
             promise.then((response) => {
                 var newApi = this.state.api
@@ -98,29 +91,9 @@ export default class Index extends Component {
 
     }
     status_update = (e) => {
-        // var newFilters = new Set(this.state.filters);
-        var status = e.currentTarget.getAttribute('status')
-        var question_id = e.currentTarget.getAttribute('name')
-        // if (isSelected) {
-        // }
-        // else {
-        //     newFilters.delete(e.currentTarget.getAttribute('topic_id'))
-        // }
-        // console.log(newFilters)
-        // newFilters.push();
-        // this.setState({
-        //     filters: newFilters,
-        //     child_conditions: {
-        //         question_chart_update: false,
-        //         filter_update: false,
-        //         questions_update: true,
-        //     }
-        // }, () => 
-        // {
-        // var filters = this.state.filters
         var data = {
-            question_id: question_id,
-            mark: status
+            question_id: e.currentTarget.getAttribute('name'),
+            mark: e.currentTarget.getAttribute('status')
         }
         var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/test_question_user_mark_public'))
         promise.then((response)=>{
@@ -128,7 +101,8 @@ export default class Index extends Component {
     
             promise.then((response) => {
                 var newApi = this.state.api
-                newApi.apiData.data.questions_data.questions_solved = response.data.questions_solved
+                newApi.apiData.data.questions_solved = response.data.questions_solved
+                console.log(newApi)
                 this.setState({
                     api:newApi,
                     child_conditions: {
@@ -157,7 +131,7 @@ export default class Index extends Component {
         return (
             <>
                 <Header loggedIn={true} />
-                <div className="container pt-32 pr-16 pl-16">
+                <div className="container pt-32 pr-16 pl-16" style={{minHeight:"100vh"}}>
                     <div className="row pb-32">
                         <div className="col-6 bg-secondary-black gray br-5">
                             <div className="row r-tabs text-center pt-12 pb-12">
@@ -176,7 +150,7 @@ export default class Index extends Component {
                                 this.state.api.success ?
                                     (
                                         <>
-                                            <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} />
+                                            <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update}/>
                                             <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} />
                                         </>
                                     )
@@ -188,7 +162,7 @@ export default class Index extends Component {
                             {
                                 this.state.api.success ?
                                     this.state.api.apiData.data.questions_data.questions.map((question, i) => {
-                                        return <Question key={i} question_data={question} status_update={this.status_update} />
+                                        return <Question key={i} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update}/>
                                     })
                                     : ""
                             }

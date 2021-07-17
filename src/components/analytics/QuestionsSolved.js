@@ -4,33 +4,9 @@ import { Doughnut } from 'react-chartjs-2';
 class QuestionsSolved extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            // chartData: props.chartData
-            chartData: {
-                datasets: [
-                    {
-                        label: 'My First Dataset',
-                        // data: props.chartData,
-                        data: [],
-                        backgroundColor: [
-                            'rgba(82, 196, 26, 1)', 'rgba(245, 132, 70, 1)', 'rgba(245, 34, 45, 1)', 'rgba(245, 34, 45, 0)',
-                        ],
-                        hoverOffset: 4,
-                    }
-                ]
-            }
-
-        }
+        
     }
 
-    componentDidMount() {
-        var newChartData = this.state.chartData
-        newChartData.datasets[0].data = this.props.chartData
-        this.setState({
-            chartData: newChartData
-        });
-        console.log("test", this.state.chartData)
-    }
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.question_chart_update
     }
@@ -38,21 +14,35 @@ class QuestionsSolved extends Component {
     render() {
         return (
             <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5">
+                {console.log("pie chart")}
                 <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                     Questions
                 </div>
                 <div className="row align-items-center">
                     <div className="col-6">
                         <div className="questions-pie f-12 position-relative">
-                            <Doughnut data={this.state.chartData} options={{
-                                cutout: "80%",
+                            <Doughnut data={{
+                                datasets: [
+                                    {
+                                        label: 'My First Dataset',
+                                        // data: props.chartData,
+                                        data: this.props.chartData,
+                                        backgroundColor: [
+                                            'rgba(82, 196, 26, 1)', 'rgba(245, 132, 70, 1)', 'rgba(245, 34, 45, 1)', 'rgba(245, 34, 45, 0)',
+                                        ],
+                                        hoverOffset: 4,
+                                    }
+                                ]
+                            }} options={{
+                                cutout: "85%",
                                 offset: 5,
                                 borderWidth: 0,
                                 plugins: {
                                     legend: {
                                         display: false
                                     }
-                                }
+                                },
+                                radius:"98%"
                             }} />
                             <div className="number gray text-center">
                                 <span className="f-32" style={{ borderBottom: "1px solid #565656" }}>308</span>
