@@ -9,7 +9,7 @@ export default function Filter(props) {
     };
 
     return (<> {/* {props.selected ? "asdasd" : "sda"} */}
-        <span onClick={(e)=>toggleClass(e)} topic_id={props.topic_id} className={
+        <span onClick={(e)=>toggleClass(e)} level_id={props.level_id} topic_id={props.topic_id} className={
             "filter" + (
                 isSelected ? " selected" : ""
             )

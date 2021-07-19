@@ -45,9 +45,8 @@ class QuestionsSolved extends Component {
                                 radius:"98%"
                             }} />
                             <div className="number gray text-center">
-                                <span className="f-32" style={{ borderBottom: "1px solid #565656" }}>308</span>
-                                <br />
-                                <span className="f-16">450</span>
+                                <div className="f-32" style={{ borderBottom: "1px solid #565656" }}>{450 - this.props.chartData[3]}</div>
+                                <div className="f-16">450</div>
                             </div>
                         </div>
                     </div>

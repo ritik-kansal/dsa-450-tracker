@@ -19,7 +19,10 @@ export default class Index extends Component {
                 filter_update: false,
                 questions_update: false,
             },
-            filters: new Set()
+            filters: {
+                topic: new Set(),
+                level: new Set(),
+            }
         }
 
     }
@@ -47,25 +50,32 @@ export default class Index extends Component {
     }
 
     filter = (e, isSelected) => {
-        var newFilters = new Set(this.state.filters);
+        var newFilters = this.state.filters;
+        var topic_id =e.currentTarget.getAttribute('topic_id')
+        var level_id =e.currentTarget.getAttribute('level_id')
         if (isSelected) {
-            newFilters.add(e.currentTarget.getAttribute('topic_id'))
+            if(topic_id)
+                newFilters.topic.add(topic_id) 
+            if(level_id)
+                newFilters.level.add(level_id) 
         }
         else {
-            newFilters.delete(e.currentTarget.getAttribute('topic_id'))
+            if(topic_id)
+                newFilters.topic.delete(topic_id) 
+            if(level_id)
+                newFilters.level.delete(level_id) 
         }
+        console.log(this.state.filters)
         this.setState({
             filters: newFilters,  
         }, () => {
-            var data = {
-                topic_id: [...this.state.filters],
-            }
-            if (this.state.filters.size != 0) {
-                var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general'))
-            }
-            else {
-                var promise = (this.props.apiCall(data, "get", 'http://127.0.0.1:8000/api/get_question/1'))
-            }
+            var topics = this.state.filters.topic
+            var levels = this.state.filters.level
+
+            var data = {}
+            if(topics.size!=0) data.topic_id=[...topics]
+            if(levels.size!=0) data.level=[...levels]
+            var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general'))
             promise.then((response) => {
                 var newApi = this.state.api
                 newApi.apiData.data.questions_data = response.data
@@ -108,7 +118,7 @@ export default class Index extends Component {
                     child_conditions: {
                         question_chart_update: true,
                         filter_update: false,
-                        questions_update: false, // no need to relect this change on frontend as it's already there
+                        questions_update: true, // no need to relect this change on frontend as it's already there
                     }
                 })
                 console.log(this.state.api,response.data.questions_solved)
@@ -162,6 +172,7 @@ export default class Index extends Component {
                             {
                                 this.state.api.success ?
                                     this.state.api.apiData.data.questions_data.questions.map((question, i) => {
+                                        // console.log(question)
                                         return <Question key={i} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update}/>
                                     })
                                     : ""
