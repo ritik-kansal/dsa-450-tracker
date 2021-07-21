@@ -376,3 +376,33 @@ a {
     background-color: #e6e6e6;
   }
   
+
+.pagination{
+    margin-bottom: 0;
+}
+.page-item{
+    margin: 0 4px;
+    &.active{
+        .page-link{
+            background-color: map-get($map: $colors, $key: "orange");
+            border-color: map-get($map: $colors, $key: "orange");
+        }
+    }
+    &.disabled{
+        display: none;
+    }
+}
+.page-link{
+    background-color: map-get($map: $colors, $key: "secondary-black");
+    border:1px solid map-get($map: $colors, $key: "gray");
+    color:map-get($map: $colors, $key: "gray");
+    border-radius:5px;
+    &:hover{
+        color: map-get($map: $colors, $key: "white");
+        background-color: map-get($map: $colors, $key: "gray");
+        border:1px solid map-get($map: $colors, $key: "gray");
+    }
+    &:focus{
+        box-shadow: none;
+    }
+}

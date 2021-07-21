@@ -6,7 +6,7 @@ export default class SignUp extends Component {
     render() {
         return (
             <>
-                <Header signUp={true} />
+                <Header signUp={false} />
                 <div className="mx-auto text-center white pt-100 w-65">
                     <SignSignupContent primary={"Sign Up and Stay Connected"} secondary={"Sign Up and Stay Connected"} />
                     <div className="row align-items-center text-start mb-60">

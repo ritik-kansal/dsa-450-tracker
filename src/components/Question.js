@@ -18,7 +18,7 @@ function Question(props) {
                     <span className="filter f-12" style={{cursor:"default"}}>{level}</span>
                     <span className="filter f-12" style={{cursor:"default"}}>{question_data.topic_name}</span>
                 </div>
-                            {console.log(question_data.mark == 2,question_data.id)}
+                            {/* {console.log(question_data.mark == 2,question_data.id)} */}
                 <div className="footer pt-8">
                     <div className="status white">
                         <label className="r-radio-label">
@@ -50,8 +50,8 @@ function Question(props) {
     )
 }
 
-// export default React.memo(Question, (prevProps, nextProps)=>{
-//     return !nextProps.questions_update
-// }); // if true then it wont render
+export default React.memo(Question, (prevProps, nextProps)=>{
+    return !nextProps.questions_update
+}); // if true then it wont render
 
-export default Question
+// export default Question

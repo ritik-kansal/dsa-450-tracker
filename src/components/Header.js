@@ -39,14 +39,14 @@ export default function Header(props) {
                                     <>
                                         <ul className="navbar-nav ms-auto">
                                             <li className="nav-item bg-orange pr-36 pl-36 br-5">
-                                                <Link className="nav-link white" aria-current="page" to="/">Sign Up</Link>
+                                                <Link className="nav-link white" aria-current="page" to="/signup">Sign Up</Link>
                                             </li>
                                         </ul>
                                     </>
                                 ) : <>
                                     <ul className="navbar-nav ms-auto">
                                         <li className="nav-item bg-orange pr-36 pl-36 br-5">
-                                            <Link className="nav-link white" aria-current="page" to="/">Sign In</Link>
+                                            <Link className="nav-link white" aria-current="page" to="/signin">Sign In</Link>
                                         </li>
                                     </ul>
                                 </>

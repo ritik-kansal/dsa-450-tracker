@@ -44,7 +44,7 @@ class SignIn extends Component {
     render() {
         return (
             <>
-                <Header signUp={false} />
+                <Header signUp={true} />
                 <div className="mx-auto text-center white pt-100 w-65">
                     <SignSignupContent primary={"Login To Your Account"} secondary={"Login To Your Account"} />
                     <div className="row align-items-center text-start mb-60">

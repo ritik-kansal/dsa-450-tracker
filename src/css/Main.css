@@ -534,4 +534,34 @@ a {
   background-color: #e6e6e6;
 }
 
+.pagination {
+  margin-bottom: 0;
+}
+
+.page-item {
+  margin: 0 4px;
+}
+.page-item.active .page-link {
+  background-color: #F58446;
+  border-color: #F58446;
+}
+.page-item.disabled {
+  display: none;
+}
+
+.page-link {
+  background-color: #141316;
+  border: 1px solid #565656;
+  color: #565656;
+  border-radius: 5px;
+}
+.page-link:hover {
+  color: #fff;
+  background-color: #565656;
+  border: 1px solid #565656;
+}
+.page-link:focus {
+  box-shadow: none;
+}
+
 /*# sourceMappingURL=Main.css.map */

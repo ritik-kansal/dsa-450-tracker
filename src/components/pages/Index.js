@@ -3,6 +3,8 @@ import Header from "../Header";
 import FilterBox from '../FilterBox';
 import Question from '../Question';
 import QuestionsSolved from '../analytics/QuestionsSolved';
+import Pagination from "react-js-pagination";
+
 import Chart from '../Chart';
 
 
@@ -22,7 +24,9 @@ export default class Index extends Component {
             filters: {
                 topic: new Set(),
                 level: new Set(),
-            }
+                status: new Set(),
+            },
+            activePage: 1
         }
 
     }
@@ -49,79 +53,92 @@ export default class Index extends Component {
         });
     }
 
+    filter_data = () => {
+        var topics = this.state.filters.topic
+        var levels = this.state.filters.level
+        var status = this.state.filters.status
+
+        var data = {}
+        if (topics.size != 0) data.topic_id = [...topics]
+        if (levels.size != 0) data.level = [...levels]
+        if (status.size != 0) data.mark = [...status]
+        var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
+        promise.then((response) => {
+            var newApi = this.state.api
+            newApi.apiData.data.questions_data = response.data
+            this.setState({
+                api: newApi,
+                child_conditions: {
+                    question_chart_update: false,
+                    filter_update: false,
+                    questions_update: true,
+                }
+            })
+        }).catch((error) => {
+            this.setState({
+                api: {
+                    success: false,
+                    apiError: error
+                }
+            })
+        });
+
+    }
+
+
     filter = (e, isSelected) => {
         var newFilters = this.state.filters;
-        var topic_id =e.currentTarget.getAttribute('topic_id')
-        var level_id =e.currentTarget.getAttribute('level_id')
+        var topic_id = e.currentTarget.getAttribute('topic_id')
+        var level_id = e.currentTarget.getAttribute('level_id')
+        var status_id = e.currentTarget.getAttribute('status_id')
         if (isSelected) {
-            if(topic_id)
-                newFilters.topic.add(topic_id) 
-            if(level_id)
-                newFilters.level.add(level_id) 
+            if (topic_id)
+                newFilters.topic.add(topic_id)
+            if (level_id)
+                newFilters.level.add(level_id)
+            if (status_id)
+                newFilters.status.add(status_id)
         }
         else {
-            if(topic_id)
-                newFilters.topic.delete(topic_id) 
-            if(level_id)
-                newFilters.level.delete(level_id) 
+            if (topic_id)
+                newFilters.topic.delete(topic_id)
+            if (level_id)
+                newFilters.level.delete(level_id)
+            if (status_id)
+                newFilters.status.delete(status_id)
         }
-        console.log(this.state.filters)
+
         this.setState({
-            filters: newFilters,  
+            filters: newFilters,
+            activePage: 1
         }, () => {
-            var topics = this.state.filters.topic
-            var levels = this.state.filters.level
-
-            var data = {}
-            if(topics.size!=0) data.topic_id=[...topics]
-            if(levels.size!=0) data.level=[...levels]
-            var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general'))
-            promise.then((response) => {
-                var newApi = this.state.api
-                newApi.apiData.data.questions_data = response.data
-                this.setState({
-                    api: newApi,
-                    child_conditions: {
-                        question_chart_update: false,
-                        filter_update: false,
-                        questions_update: true,
-                    }
-                })
-            }).catch((error) => {
-                this.setState({
-                    api: {
-                        success: false,
-                        apiError: error
-                    }
-                })
-            });
-
+            this.filter_data()
         }
         )
 
     }
+
     status_update = (e) => {
         var data = {
             question_id: e.currentTarget.getAttribute('name'),
             mark: e.currentTarget.getAttribute('status')
         }
         var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/test_question_user_mark_public'))
-        promise.then((response)=>{
-            var promise = (this.props.apiCall({}, "get", 'http://127.0.0.1:8000/api/questions_solved'))
-    
-            promise.then((response) => {
+        promise.then((response) => {
+            var promise_1 = (this.props.apiCall({}, "get", 'http://127.0.0.1:8000/api/questions_solved'))
+
+            promise_1.then((response) => {
                 var newApi = this.state.api
                 newApi.apiData.data.questions_solved = response.data.questions_solved
                 console.log(newApi)
                 this.setState({
-                    api:newApi,
+                    api: newApi,
                     child_conditions: {
                         question_chart_update: true,
                         filter_update: false,
-                        questions_update: true, // no need to relect this change on frontend as it's already there
+                        questions_update: false, // no need to relect this change on frontend as it's already there
                     }
                 })
-                console.log(this.state.api,response.data.questions_solved)
             }).catch((error) => {
                 this.setState({
                     api: {
@@ -133,22 +150,44 @@ export default class Index extends Component {
         })
 
     }
-    // )
 
-    // }
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({ activePage: pageNumber },
+            ()=>{
+                this.filter_data()
+            }
+            );
+    }
+
 
     render() {
         return (
             <>
                 <Header loggedIn={true} />
-                <div className="container pt-32 pr-16 pl-16" style={{minHeight:"100vh"}}>
+                <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
                     <div className="row pb-32">
-                        <div className="col-6 bg-secondary-black gray br-5">
-                            <div className="row r-tabs text-center pt-12 pb-12">
+                        <div className="col-6 gray br-5 pl-0">
+                            <div className="row r-tabs text-center">
+                                {/* <div className="col">All Ques</div>
                                 <div className="col">All Ques</div>
                                 <div className="col">All Ques</div>
-                                <div className="col">All Ques</div>
-                                <div className="col">All Ques</div>
+                                <div className="col">All Ques</div> */}
+                                {
+                                    this.state.api.success ?
+                                    (
+                                        <Pagination
+                                            activePage={this.state.activePage}
+                                            itemsCountPerPage={10}
+                                            totalItemsCount={this.state.api.apiData.data.questions_data.total_length}
+                                            pageRangeDisplayed={5}
+                                            itemClass="page-item"
+                                            linkClass="page-link"
+                                            onChange={this.handlePageChange.bind(this)}
+                                        />
+                                    )
+                                    : ""
+                                }
                             </div>
                         </div>
                         <div className="col-3"></div>
@@ -160,8 +199,8 @@ export default class Index extends Component {
                                 this.state.api.success ?
                                     (
                                         <>
-                                            <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update}/>
                                             <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} />
+                                            <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update} />
                                         </>
                                     )
                                     : ""}
@@ -171,9 +210,9 @@ export default class Index extends Component {
                         <div className="col-9 pl-16 pr-0">
                             {
                                 this.state.api.success ?
-                                    this.state.api.apiData.data.questions_data.questions.map((question, i) => {
+                                    this.state.api.apiData.data.questions_data.questions.map((question) => {
                                         // console.log(question)
-                                        return <Question key={i} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update}/>
+                                        return <Question key={question.id} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update} />
                                     })
                                     : ""
                             }
@@ -181,11 +220,7 @@ export default class Index extends Component {
                         </div>
                     </div>
                 </div>
-                {/* <Chart chartData={
-                        this.state.chartData
-                    }
-                    location="Massachusetts"
-                    legendPosition="bottom"/> */} </>
+            </>
         )
     }
 }
