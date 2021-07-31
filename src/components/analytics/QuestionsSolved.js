@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Doughnut } from 'react-chartjs-2';
 
 class QuestionsSolved extends Component {
-    constructor(props) {
-        super(props);
-        
-    }
+    // constructor(props) {
+    //     super(props);
+
+    // }
 
     shouldComponentUpdate(nextProps, nextState) {
         return nextProps.question_chart_update
@@ -42,7 +42,7 @@ class QuestionsSolved extends Component {
                                         display: false
                                     }
                                 },
-                                radius:"98%"
+                                radius: "98%"
                             }} />
                             <div className="number gray text-center">
                                 <div className="f-32" style={{ borderBottom: "1px solid #565656" }}>{450 - this.props.chartData[3]}</div>
@@ -50,17 +50,33 @@ class QuestionsSolved extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-6 legend pl-16">
-                        <div>
-                            <span className="green float-start">Easy</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
-                        </div>
-                        <div>
-                            <span className="orange float-start">Medium</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
-                        </div>
-                        <div>
-                            <span className="red float-start">Hard</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
-                        </div>
-                    </div>
+                    {this.props.flag ?
+                        (
+                            < div className="col-6 legend pl-16">
+                                <div>
+                                    <span className="green float-start">Easy</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
+                                </div>
+                                <div>
+                                    <span className="orange float-start">Medium</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
+                                </div>
+                                <div>
+                                    <span className="red float-start">Hard</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
+                                </div>
+                            </div>
+                        ) : (
+                            < div className="col-6 legend pl-16">
+                                <div>
+                                    <span className="green float-start">Pending</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
+                                </div>
+                                <div>
+                                    <span className="orange float-start">Revise</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
+                                </div>
+                                <div>
+                                    <span className="red float-start">Done</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </div >
         )

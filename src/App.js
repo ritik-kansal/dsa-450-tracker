@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg'; 
 import './App.css';
 import './css/Main.css';
 import Index from './components/pages/Index';
 import SignIn from './components/pages/SignIn';
 import SignUp from './components/pages/SignUp';
 import Profile from './components/pages/Profile';
-import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Cookies from 'universal-cookie';
 import axios from 'axios'
 

@@ -5,7 +5,7 @@ import Question from '../Question';
 import QuestionsSolved from '../analytics/QuestionsSolved';
 import Pagination from "react-js-pagination";
 
-import Chart from '../Chart';
+// import Chart from '../Chart';
 
 
 export default class Index extends Component {
@@ -59,9 +59,9 @@ export default class Index extends Component {
         var status = this.state.filters.status
 
         var data = {}
-        if (topics.size != 0) data.topic_id = [...topics]
-        if (levels.size != 0) data.level = [...levels]
-        if (status.size != 0) data.mark = [...status]
+        if (topics.size !== 0) data.topic_id = [...topics]
+        if (levels.size !== 0) data.level = [...levels]
+        if (status.size !== 0) data.mark = [...status]
         var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
         promise.then((response) => {
             var newApi = this.state.api
@@ -154,10 +154,10 @@ export default class Index extends Component {
     handlePageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`);
         this.setState({ activePage: pageNumber },
-            ()=>{
+            () => {
                 this.filter_data()
             }
-            );
+        );
     }
 
 
@@ -175,18 +175,18 @@ export default class Index extends Component {
                                 <div className="col">All Ques</div> */}
                                 {
                                     this.state.api.success ?
-                                    (
-                                        <Pagination
-                                            activePage={this.state.activePage}
-                                            itemsCountPerPage={10}
-                                            totalItemsCount={this.state.api.apiData.data.questions_data.total_length}
-                                            pageRangeDisplayed={5}
-                                            itemClass="page-item"
-                                            linkClass="page-link"
-                                            onChange={this.handlePageChange.bind(this)}
-                                        />
-                                    )
-                                    : ""
+                                        (
+                                            <Pagination
+                                                activePage={this.state.activePage}
+                                                itemsCountPerPage={10}
+                                                totalItemsCount={this.state.api.apiData.data.questions_data.total_length}
+                                                pageRangeDisplayed={5}
+                                                itemClass="page-item"
+                                                linkClass="page-link"
+                                                onChange={this.handlePageChange.bind(this)}
+                                            />
+                                        )
+                                        : ""
                                 }
                             </div>
                         </div>

@@ -87,12 +87,12 @@ export default class Profile extends Component {
                                 <div className="col pl-16 pr-16">
 
                                     {
-                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> : ""
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} flag={true} /> : ""
                                     }
                                 </div>
                                 <div className="col pl-16">
                                     {
-                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> : ""
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.question_marked.marks} question_chart_update={this.state.child_conditions.question_chart_update} flag={false} /> : ""
                                     }
                                 </div>
                             </div>
