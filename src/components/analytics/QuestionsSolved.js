@@ -14,7 +14,7 @@ class QuestionsSolved extends Component {
     render() {
         return (
             <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5">
-                {console.log("pie chart")}
+                {/* {console.log("pie chart")} */}
                 <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                     Questions
                 </div>
@@ -59,30 +59,30 @@ class QuestionsSolved extends Component {
                                 <div>
                                     <span className="green float-start">Easy</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                                 <div>
                                     <span className="orange float-start">Medium</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                                 <div>
                                     <span className="red float-start">Hard</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                             </div>
                         ) : (
                             < div className="col-6 legend pl-16">
                                 <div>
                                     <span className="green float-start">Done</span><span className="value ms-auto float-end">{this.props.chartData[0]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                                 <div>
                                     <span className="orange float-start">Revise</span><span className="value ms-auto float-end">{this.props.chartData[1]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                                 <div>
                                     <span className="red float-start">Pending</span><span className="value ms-auto float-end">{this.props.chartData[2]}</span>
                                 </div>
-                                <div class="clearfix"></div>
+                                <div className="clearfix"></div>
                             </div>
                         )
                     }

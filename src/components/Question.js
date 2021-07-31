@@ -9,7 +9,7 @@ function Question(props) {
 
     return (
         <div>
-            {console.log("in_question")}
+            {/* {console.log("in_question")} */}
             <div className="question-box">
                 <div className="question">
                     <span className="gray">{question_data.id}.</span> <a className="question-link" href={question_data.link} target="blank">{question_data.name}</a>

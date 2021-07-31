@@ -33,7 +33,7 @@ class SignIn extends Component {
     handle=(e)=> {
         const newData = (this.state.data)
         newData[e.target.id] = e.target.value
-        console.log(newData)
+        // console.log(newData)
 
         this.setState({
             data: newData

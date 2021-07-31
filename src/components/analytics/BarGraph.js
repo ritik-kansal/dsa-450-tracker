@@ -3,57 +3,40 @@ import {Bar} from 'react-chartjs-2';
 
 
 export default class BarGraph extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            chartData: {
-                labels: [
-                    'Red',
-                    'Blue',
-                    'Yellow',
-                    'Green',
-                    'Purple',
-                    'Orange'
-                ],
-                datasets: [
-                    {
-
-                        data: [
-                            12,
-                            20,
-                            3,
-                            5,
-                            2,
-                            3
-                        ],
-                        backgroundColor: [
-                            'rgba(245,132,70,0.5)',
-                            'rgba(245,132,70,0.5)',
-                            'rgba(245,132,70,0.5)',
-                            'rgba(245,132,70,0.5)',
-                            'rgba(245,132,70,0.5)',
-                            'rgba(245,132,70,0.5)'
-                        ],
-                        borderColor: [
-                            'rgba(245,132,70,1)',
-                            'rgba(245,132,70,1)',
-                            'rgba(245,132,70,1)',
-                            'rgba(245,132,70,1)',
-                            'rgba(245,132,70,1)',
-                            'rgba(245,132,70,1)'
-                        ],
-                        borderWidth: 1
-                    }
-                ]
-            }
-
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+        
+    // }
     render() {
         return (
             <div className="p-16 pt-32 bg-secondary-black br-5">
                 <Bar data={
-                        this.state.chartData
+                        {
+                            labels: this.props.labels,
+                            datasets: [
+                                {
+            
+                                    data: this.props.values,
+                                    backgroundColor: [
+                                        'rgba(245,132,70,0.5)',
+                                        'rgba(245,132,70,0.5)',
+                                        'rgba(245,132,70,0.5)',
+                                        'rgba(245,132,70,0.5)',
+                                        'rgba(245,132,70,0.5)',
+                                        'rgba(245,132,70,0.5)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(245,132,70,1)',
+                                        'rgba(245,132,70,1)',
+                                        'rgba(245,132,70,1)',
+                                        'rgba(245,132,70,1)',
+                                        'rgba(245,132,70,1)',
+                                        'rgba(245,132,70,1)'
+                                    ],
+                                    borderWidth: 1
+                                }
+                            ]
+                        }
                     }
                     options={
                         {

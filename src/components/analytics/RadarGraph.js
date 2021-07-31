@@ -29,9 +29,9 @@ export default class RadarGraph extends Component {
         }
     }
 
-    componentDidMount(){
-        console.log(this.props.chartData)
-    }
+    // componentDidMount(){
+    //     console.log(this.props.chartData)
+    // }
 
     render() {
         return (

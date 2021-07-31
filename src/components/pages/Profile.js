@@ -35,7 +35,7 @@ export default class Profile extends Component {
         });
         const promise = (this.props.apiCall(data, "get", this.state.url))
         promise.then((response) => {
-            console.log(response)
+            // console.log(response)
             this.setState({
                 api: {
                     success: true,
@@ -96,7 +96,9 @@ export default class Profile extends Component {
                                     }
                                 </div>
                             </div>
-                            <BarGraph />
+                            {
+                                this.state.api.success ? <BarGraph values={this.state.api.apiData.data.topic_wise_freq.values} labels={this.state.api.apiData.data.topic_wise_freq.labels}/> :""
+                            }
                         </div>
                         <div className="col-3 pl-16 pr-0">
                             <div className="bg-secondary-black gray p-16 br-5 mb-32">

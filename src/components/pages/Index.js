@@ -130,7 +130,7 @@ export default class Index extends Component {
             promise_1.then((response) => {
                 var newApi = this.state.api
                 newApi.apiData.data.questions_solved = response.data.questions_solved
-                console.log(newApi)
+                // console.log(newApi)
                 this.setState({
                     api: newApi,
                     child_conditions: {
@@ -152,7 +152,7 @@ export default class Index extends Component {
     }
 
     handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
+        // console.log(`active page is ${pageNumber}`);
         this.setState({ activePage: pageNumber },
             () => {
                 this.filter_data()
