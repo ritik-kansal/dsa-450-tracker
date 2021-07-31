@@ -16,8 +16,8 @@ export default class Profile extends Component {
             },
             child_conditions: {
                 question_chart_update: false,
-            //     filter_update: false,
-            //     questions_update: false,
+                //     filter_update: false,
+                //     questions_update: false,
             },
             // filters: {
             //     topic: new Set(),
@@ -85,14 +85,14 @@ export default class Profile extends Component {
 
                                 </div>
                                 <div className="col pl-16 pr-16">
-                                    
+
                                     {
-                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> :""
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> : ""
                                     }
                                 </div>
                                 <div className="col pl-16">
                                     {
-                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> :""
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> : ""
                                     }
                                 </div>
                             </div>
@@ -104,15 +104,15 @@ export default class Profile extends Component {
                                     Weekly Report
                                 </div>
                                 {
-                                    // this.state.api.success ? <RadarGraph chartData={this.state.api.apiData.data.week_data}/> : ""
+                                    this.state.api.success ? <RadarGraph chartData={this.state.api.apiData.data.week_data} /> : ""
                                 }
-                                
+
                             </div>
                             <div className="bg-secondary-black gray p-16 br-5 mb-32">
                                 {/* <div className="filter-heading mb-8 f-16 fw-500 secondary-gray">
                                     Weekly Report
                                 </div> */}
-                                <Calendar onClickDay={(value, event) => alert('Clicked day: ', value)} showNeighboringMonth={false}/>
+                                <Calendar onClickDay={(value, event) => alert('Clicked day: ', value)} showNeighboringMonth={false} />
                             </div>
                         </div>
                     </div>
