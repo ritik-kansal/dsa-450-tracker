@@ -16,7 +16,7 @@ export default class RadarGraph extends Component {
                 ],
                 datasets: [
                     {
-                        label: 'My First dataset',
+                        // label: 'My First dataset',
                         // backgroundColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: "rgba(245,132,70,0.5)",
                         borderColor: 'rgba(245,132,70,1)',
