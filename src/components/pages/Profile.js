@@ -7,6 +7,51 @@ import Calendar from 'react-calendar'
 // import '../../css/ReactCalendar.css'
 
 export default class Profile extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            url: "http://127.0.0.1:8000/api/pages/profile",
+            api: {
+                success: false
+            },
+            child_conditions: {
+                question_chart_update: false,
+            //     filter_update: false,
+            //     questions_update: false,
+            },
+            // filters: {
+            //     topic: new Set(),
+            //     level: new Set(),
+            //     status: new Set(),
+            // },
+            // activePage: 1
+        }
+
+    }
+
+    componentDidMount() {
+        var data = JSON.stringify({
+
+        });
+        const promise = (this.props.apiCall(data, "get", this.state.url))
+        promise.then((response) => {
+            console.log(response)
+            this.setState({
+                api: {
+                    success: true,
+                    apiData: response,
+                }
+            })
+        }).catch((error) => {
+            this.setState({
+                api: {
+                    success: false,
+                    apiError: error
+                }
+            })
+        });
+    }
+
     render() {
         return (
             <>
@@ -40,10 +85,15 @@ export default class Profile extends Component {
 
                                 </div>
                                 <div className="col pl-16 pr-16">
-                                    <QuestionsSolved />
+                                    
+                                    {
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> :""
+                                    }
                                 </div>
                                 <div className="col pl-16">
-                                    <QuestionsSolved />
+                                    {
+                                        this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} /> :""
+                                    }
                                 </div>
                             </div>
                             <BarGraph />
@@ -53,7 +103,10 @@ export default class Profile extends Component {
                                 <div className="filter-heading mb-8 f-16 fw-500 secondary-gray">
                                     Weekly Report
                                 </div>
-                                <RadarGraph />
+                                {
+                                    // this.state.api.success ? <RadarGraph chartData={this.state.api.apiData.data.week_data}/> : ""
+                                }
+                                
                             </div>
                             <div className="bg-secondary-black gray p-16 br-5 mb-32">
                                 {/* <div className="filter-heading mb-8 f-16 fw-500 secondary-gray">

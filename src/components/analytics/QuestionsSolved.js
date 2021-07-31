@@ -13,7 +13,7 @@ class QuestionsSolved extends Component {
 
     render() {
         return (
-            <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5 mb-32">
+            <div onLoad={window.loadQuestionSolved} className="bg-secondary-black gray p-16 br-5">
                 {console.log("pie chart")}
                 <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                     Questions

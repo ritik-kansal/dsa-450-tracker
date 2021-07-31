@@ -7,12 +7,12 @@ export default class RadarGraph extends Component {
         this.state = {
             chartData: {
                 labels: [
-                    "English",
-                    "Maths",
-                    "Physics",
-                    "Chemistry",
-                    "Biology",
-                    "History"
+                    "Mon",
+                    "Tue",
+                    "Thu",
+                    "Fri",
+                    "Sat",
+                    "Sun"
                 ],
                 datasets: [
                     {
@@ -21,21 +21,18 @@ export default class RadarGraph extends Component {
                         backgroundColor: "rgba(245,132,70,0.5)",
                         borderColor: 'rgba(245,132,70,1)',
                         borderWidth: 1,
-                        data: [
-                            40,
-                            20,
-                            30,
-                            40,
-                            50,
-                            50
-
-                        ]
+                        data: this.props.chartData
                     }
                 ]
             }
 
         }
     }
+
+    componentDidMount(){
+        console.log(this.props.chartData)
+    }
+
     render() {
         return (
             <Radar data={this.state.chartData} options={{

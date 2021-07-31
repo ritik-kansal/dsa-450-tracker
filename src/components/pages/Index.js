@@ -199,7 +199,9 @@ export default class Index extends Component {
                                 this.state.api.success ?
                                     (
                                         <>
-                                            <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} />
+                                            <div className="mb-32">
+                                                <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} question_chart_update={this.state.child_conditions.question_chart_update} />
+                                            </div>
                                             <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update} />
                                         </>
                                     )

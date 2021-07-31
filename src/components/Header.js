@@ -17,15 +17,15 @@ export default function Header(props) {
                                         <li className="nav-item">
                                             <Link className="nav-link active" aria-current="page" to="/">Ques</Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Code</Link>
-                                        </li>
+                                        </li> */}
                                         <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="/profile">Performance</Link>
                                         </li>
-                                        <li className="nav-item">
+                                        {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Friends</Link>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                     <ul className="navbar-nav fw-600 f-12">
                                         <li className="nav-item">
