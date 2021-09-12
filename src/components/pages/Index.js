@@ -25,6 +25,9 @@ export default class Index extends Component {
                 topic: new Set(),
                 level: new Set(),
                 status: new Set(),
+                search: {
+                    name: "array",
+                }
             },
             activePage: 1
         }
@@ -53,6 +56,38 @@ export default class Index extends Component {
         });
     }
 
+    search = (e) => {
+        var question_name = this.state.filters.search
+
+        var data = {}
+        data.search = question_name
+        console.log(e.target.parentNode.firstChild.value)
+        data.search.name =  e.target.parentNode.firstChild.value
+        // console.log(e.currentTarget.value)
+
+        var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
+        console.log(promise)
+        promise.then((response) => {
+            var newApi = this.state.api
+            newApi.apiData.data.questions_data = response.data
+            this.setState({
+                api: newApi,
+                child_conditions: {
+                    question_chart_update: false,
+                    filter_update: false,
+                    questions_update: true,
+                }
+            })
+        }).catch((error) => {
+            this.setState({
+                api: {
+                    success: false,
+                    apiError: error
+                }
+            })
+        });
+    }
+
     filter_data = () => {
         var topics = this.state.filters.topic
         var levels = this.state.filters.level
@@ -63,6 +98,7 @@ export default class Index extends Component {
         if (levels.size !== 0) data.level = [...levels]
         if (status.size !== 0) data.mark = [...status]
         var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
+        console.log(promise)
         promise.then((response) => {
             var newApi = this.state.api
             newApi.apiData.data.questions_data = response.data
@@ -84,7 +120,6 @@ export default class Index extends Component {
         });
 
     }
-
 
     filter = (e, isSelected) => {
         var newFilters = this.state.filters;
@@ -191,7 +226,10 @@ export default class Index extends Component {
                             </div>
                         </div>
                         <div className="col-3"></div>
-                        <div className="col-3 bg-secondary-black gray br-5"></div>
+                        <div className="col-3" style={{"padding":0}}>
+                            <input className="bg-secondary-black gray search-bar pl-8" placeholder="search question"></input>
+                            <input className="text-start bg-orange white" type="submit" value="submit" onClick={(e)=>this.search(e)}/>
+                        </div>
                     </div>
                     <div className="row">
                         <div className="col-3 pl-0 pr-16">

@@ -48,6 +48,9 @@ $domain in $spacing {
 .p-16 {
     padding: 16px;
 }
+.pl-8 {
+    padding-left: 8px;
+}
 
 $border_radius: 5;
 @each $radius in $border_radius {
@@ -239,7 +242,24 @@ a {
     margin-left: 0;
     margin-right: 0;
 }
-
+.search-bar{
+    border:none;
+    &:hover{
+        border-width:0px;
+        border:none;
+        outline:none;
+    }
+    &:focus{
+        border-width:0px;
+        border:none;
+        outline:none;
+    }
+    &:focus-visible{
+        border-width:0px;
+        border:none;
+        outline:none;
+    }
+}
 .col{
     padding: 0;
 }
