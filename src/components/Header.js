@@ -15,13 +15,13 @@ export default function Header(props) {
                                 <>
                                     <ul className="navbar-nav mx-auto fw-600 f-12">
                                         <li className="nav-item">
-                                            <Link className="nav-link active" aria-current="page" to="/">Ques</Link>
+                                            <Link className={"nav-link" + (props.ques ? " active" : "")} aria-current="page" to="/">Ques</Link>
                                         </li>
                                         {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Code</Link>
                                         </li> */}
                                         <li className="nav-item">
-                                            <Link className="nav-link" aria-current="page" to="/profile">Performance</Link>
+                                            <Link className={"nav-link" + (props.performance ? " active" : "")} aria-current="page" to="/profile">Performance</Link>
                                         </li>
                                         {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Friends</Link>

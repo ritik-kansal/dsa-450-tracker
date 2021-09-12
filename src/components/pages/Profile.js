@@ -87,7 +87,7 @@ export default class Profile extends Component {
     render() {
         return (
             <>
-                <Header loggedIn={true} />
+                <Header loggedIn={true} performance={true} />
                 <div className="container pt-32 pr-16 pl-16">
 
 
