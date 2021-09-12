@@ -6,13 +6,21 @@ export default class RadarGraph extends Component {
         super(props);
         this.state = {
             chartData: {
+                
+            }
+
+        }
+    }
+
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return nextProps.question_chart_update
+    // }
+
+    render() {
+        return (
+            <Radar data={{
                 labels: [
-                    "Mon",
-                    "Tue",
-                    "Thu",
-                    "Fri",
-                    "Sat",
-                    "Sun"
+                    "Mon","Tue","Thu","Fri","Sat","Sun"
                 ],
                 datasets: [
                     {
@@ -24,18 +32,7 @@ export default class RadarGraph extends Component {
                         data: this.props.chartData
                     }
                 ]
-            }
-
-        }
-    }
-
-    // componentDidMount(){
-    //     console.log(this.props.chartData)
-    // }
-
-    render() {
-        return (
-            <Radar data={this.state.chartData} options={{
+            }} options={{
                 plugins: {
                     legend: false
                 },

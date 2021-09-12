@@ -16,6 +16,7 @@ export default class Profile extends Component {
             },
             child_conditions: {
                 question_chart_update: false,
+                bar_chart_update:false,
                 //     filter_update: false,
                 //     questions_update: false,
             },
@@ -30,10 +31,10 @@ export default class Profile extends Component {
     }
 
     componentDidMount() {
-        var data = JSON.stringify({
-
-        });
-        const promise = (this.props.apiCall(data, "get", this.state.url))
+        var data = {
+            day:null
+        };
+        const promise = (this.props.apiCall(data, "post", this.state.url))
         promise.then((response) => {
             // console.log(response)
             this.setState({
@@ -51,6 +52,37 @@ export default class Profile extends Component {
             })
         });
     }
+    convert= (arg) => {
+        var date = arg,
+          mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+          day = ("0" + date.getDate()).slice(-2);
+        return [date.getFullYear(), mnth, day].join("-");
+    }
+    callDay = (clickedDay) => { 
+        console.log(clickedDay)
+        console.log(this.convert(clickedDay))
+        var data = {
+            day:this.convert(clickedDay)
+        }
+        const promise = (this.props.apiCall(data, "post", this.state.url))
+        promise.then((response) => {
+            // console.log(response)
+            this.setState({
+                api: {
+                    success: true,
+                    apiData: response,
+                }
+            })
+        }).catch((error) => {
+            this.setState({
+                api: {
+                    success: false,
+                    apiError: error
+                }
+            })
+        });
+    };//moment(day.dateString).format(_format)
+
 
     render() {
         return (
@@ -97,7 +129,7 @@ export default class Profile extends Component {
                                 </div>
                             </div>
                             {
-                                this.state.api.success ? <BarGraph values={this.state.api.apiData.data.topic_wise_freq.values} labels={this.state.api.apiData.data.topic_wise_freq.labels}/> :""
+                                this.state.api.success ? <BarGraph values={this.state.api.apiData.data.topic_wise_freq.values} bar_chart_update={this.state.child_conditions.bar_chart_update} labels={this.state.api.apiData.data.topic_wise_freq.labels}/> :""
                             }
                         </div>
                         <div className="col-3 pl-16 pr-0">
@@ -114,7 +146,8 @@ export default class Profile extends Component {
                                 {/* <div className="filter-heading mb-8 f-16 fw-500 secondary-gray">
                                     Weekly Report
                                 </div> */}
-                                <Calendar onClickDay={(value, event) => alert('Clicked day: ', value)} showNeighboringMonth={false} />
+                                <Calendar onClickDay={this.callDay} showNeighboringMonth={false} />
+                                {/* <Calendar onClickDay={(value, event) => alert('Clicked day: ', value)} showNeighboringMonth={false} /> */}
                             </div>
                         </div>
                     </div>

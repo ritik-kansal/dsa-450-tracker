@@ -2,11 +2,16 @@ import React, {Component} from 'react'
 import {Bar} from 'react-chartjs-2';
 
 
-export default class BarGraph extends Component {
+class BarGraph extends Component {
     // constructor(props) {
     //     super(props);
         
     // }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log(nextProps.bar_chart_update)
+        return nextProps.bar_chart_update
+    }
     render() {
         return (
             <div className="p-16 pt-32 bg-secondary-black br-5">
@@ -63,3 +68,4 @@ export default class BarGraph extends Component {
         )
     }
 }
+export default BarGraph;

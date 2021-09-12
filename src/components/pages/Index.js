@@ -228,7 +228,10 @@ export default class Index extends Component {
                         <div className="col-3"></div>
                         <div className="col-3" style={{"padding":0}}>
                             <input className="bg-secondary-black gray search-bar pl-8" placeholder="search question"></input>
-                            <input className="text-start bg-orange white" type="submit" value="submit" onClick={(e)=>this.search(e)}/>
+                            {/* <input className="text-start bg-orange white" type="submit" value="search" onClick={(e)=>this.search(e)}/> */}
+                            <button className="text-start bg-orange white search-bar" type="submit" onClick={(e)=>this.search(e)}>
+                                search
+                            </button>
                         </div>
                     </div>
                     <div className="row">
