@@ -89,14 +89,14 @@ export default class Profile extends Component {
         return (
             this.props.isLoggedin?(
             <>
-                <Header loggedIn={true} performance={true} />
+                <Header apiCall={this.props.apiCall} loggedIn={true} performance={true} />
                 <div className="container pt-32 pr-16 pl-16">
 
 
                     <div className="row">
                         <div className="col-9 pl-0 pr-16 h-100">
                             <div className="row mb-32">
-                                <div className="col pr-16">
+                                {/* <div className="col pr-16">
                                     <div className="bg-secondary-black gray p-16 br-5 h-100">
                                         <div className="filter-heading f-16 fw-500 secondary-gray mb-16">
                                             Ranking
@@ -117,14 +117,15 @@ export default class Profile extends Component {
                                         </div>
                                     </div>
 
-                                </div>
-                                <div className="col pl-16 pr-16">
+                                </div> */}
+
+                                <div className="col-4 pl-16 pr-16">
 
                                     {
                                         this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} count={this.state.api.apiData.data.questions_solved.count} question_chart_update={this.state.child_conditions.question_chart_update} flag={true} /> : ""
                                     }
                                 </div>
-                                <div className="col pl-16">
+                                <div className="col-4 pl-16">
                                     {
                                         this.state.api.success ? <QuestionsSolved chartData={this.state.api.apiData.data.question_marked.marks} count={this.state.api.apiData.data.question_marked.count} question_chart_update={this.state.child_conditions.question_chart_update} flag={false} /> : ""
                                     }

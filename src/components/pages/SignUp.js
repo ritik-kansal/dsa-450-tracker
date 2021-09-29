@@ -41,15 +41,15 @@ class SignUp extends Component {
     render() {
         return (
             <>
-                <Header signUp={false} />
+                <Header apiCall={this.props.apiCall} signUp={false} />
                 <div className="mx-auto text-center white pt-100 w-65">
                     <SignSignupContent primary={"Sign Up and Stay Connected"} secondary={"Sign Up and Stay Connected"} />
                     <form onSubmit={(e) => this.submit(e)}>
                     <div className="row align-items-center text-start mb-60">
                         <div className="col-4">
                                 <div className="form-group">
-                                    <input type="text" onChange={(e)=>this.handle(e)} id="username" className="form-control gray bg-secondary-black mb-24 pl-16 pr-16 pt-16 pb-16" id="username" placeholder="Username" />
-                                    <input type="text" onChange={(e)=>this.handle(e)} id="name" className="form-control gray bg-secondary-black mb-24 pl-16 pr-16 pt-16 pb-16" id="name" placeholder="Name" />
+                                    <input type="text" onChange={(e)=>this.handle(e)} id="username" className="form-control bg-secondary-black white mb-24 pl-16 pr-16 pt-16 pb-16" id="username" placeholder="Username" />
+                                    <input type="text" onChange={(e)=>this.handle(e)} id="name" className="form-control bg-secondary-black white mb-24 pl-16 pr-16 pt-16 pb-16" id="name" placeholder="Name" />
                                 </div>
                             
                         </div>
@@ -59,8 +59,8 @@ class SignUp extends Component {
                         <div className="col-4">
                             
                                 <div className="form-group">
-                                    <input type="email" onChange={(e)=>this.handle(e)} id="email" className="form-control gray bg-secondary-black mb-24 pl-16 pr-16 pt-16 pb-16" id="email" placeholder="Email" />
-                                    <input type="password" onChange={(e)=>this.handle(e)} id="password" className="form-control gray bg-secondary-black mb-24 pl-16 pr-16 pt-16 pb-16" id="password" placeholder="Password" />
+                                    <input type="email" onChange={(e)=>this.handle(e)} id="email" className="form-control bg-secondary-black white mb-24 pl-16 pr-16 pt-16 pb-16" id="email" placeholder="Email" />
+                                    <input type="password" onChange={(e)=>this.handle(e)} id="password" className="form-control bg-secondary-black white mb-24 pl-16 pr-16 pt-16 pb-16" id="password" placeholder="Password" />
                                 </div>
                         </div>
                         <div className="col-4 offset-4">

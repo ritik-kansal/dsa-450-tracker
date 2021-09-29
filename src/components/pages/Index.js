@@ -202,7 +202,7 @@ export default class Index extends Component {
         return (
             this.props.isLoggedin?(
             <>
-                <Header loggedIn={true} ques={true}/>
+                <Header apiCall={this.props.apiCall} loggedIn={true} ques={true}/>
                 <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
                     <div className="row pb-32">
                         <div className="col-6 gray br-5 pl-0">
