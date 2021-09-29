@@ -8,10 +8,10 @@ class SignUp extends Component {
         this.state = {
             url: "https://dsa-tracker-450.herokuapp.com/api/register",
             data: {
-                username: "admin",
+                username: "",
                 email:"",
                 name:"",
-                password: "admin"
+                password: ""
             }
         }
         
