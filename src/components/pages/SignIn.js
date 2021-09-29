@@ -11,7 +11,7 @@ class SignIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://127.0.0.1:8000/api/login",
+            url: "http://https://dsa-tracker-450.herokuapp.com/api/login",
             data: {
                 username: "admin",
                 password: "admin"
@@ -33,7 +33,7 @@ class SignIn extends Component {
     handle=(e)=> {
         const newData = (this.state.data)
         newData[e.target.id] = e.target.value
-        // console.log(newData)
+        console.log(newData)
 
         this.setState({
             data: newData

@@ -12,7 +12,7 @@ export default class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://127.0.0.1:8000/api/pages/index",
+            url: "http://https://dsa-tracker-450.herokuapp.com/api/pages/index",
             api: {
                 success: false
             },
@@ -65,7 +65,7 @@ export default class Index extends Component {
         data.search.name =  e.target.parentNode.firstChild.value
         // console.log(e.currentTarget.value)
 
-        var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
+        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
         console.log(promise)
         promise.then((response) => {
             var newApi = this.state.api
@@ -97,7 +97,7 @@ export default class Index extends Component {
         if (topics.size !== 0) data.topic_id = [...topics]
         if (levels.size !== 0) data.level = [...levels]
         if (status.size !== 0) data.mark = [...status]
-        var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/filter/general/' + this.state.activePage))
+        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
         console.log(promise)
         promise.then((response) => {
             var newApi = this.state.api
@@ -158,9 +158,9 @@ export default class Index extends Component {
             question_id: e.currentTarget.getAttribute('name'),
             mark: e.currentTarget.getAttribute('status')
         }
-        var promise = (this.props.apiCall(data, "post", 'http://127.0.0.1:8000/api/test_question_user_mark_public'))
+        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/test_question_user_mark_public'))
         promise.then((response) => {
-            var promise_1 = (this.props.apiCall({}, "get", 'http://127.0.0.1:8000/api/questions_solved'))
+            var promise_1 = (this.props.apiCall({}, "get", 'http://https://dsa-tracker-450.herokuapp.com/api/questions_solved'))
 
             promise_1.then((response) => {
                 var newApi = this.state.api

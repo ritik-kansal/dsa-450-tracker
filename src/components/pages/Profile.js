@@ -10,7 +10,7 @@ export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://127.0.0.1:8000/api/pages/profile",
+            url: "http://https://dsa-tracker-450.herokuapp.com/api/pages/profile",
             api: {
                 success: false
             },
