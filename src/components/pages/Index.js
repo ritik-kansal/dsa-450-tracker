@@ -200,7 +200,6 @@ class Index extends Component {
 
     render() {
         return (
-            
             <>
                 <Header apiCall={this.props.apiCall} loggedIn={true} ques={true}/>
                 <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
