@@ -4,6 +4,8 @@ import FilterBox from '../FilterBox';
 import Question from '../Question';
 import QuestionsSolved from '../analytics/QuestionsSolved';
 import Pagination from "react-js-pagination";
+import { Redirect } from 'react-router';
+import Cookies from 'universal-cookie';
 
 // import Chart from '../Chart';
 
@@ -12,7 +14,7 @@ export default class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://https://dsa-tracker-450.herokuapp.com/api/pages/index",
+            url: "https://dsa-tracker-450.herokuapp.com/api/pages/index",
             api: {
                 success: false
             },
@@ -65,7 +67,7 @@ export default class Index extends Component {
         data.search.name =  e.target.parentNode.firstChild.value
         // console.log(e.currentTarget.value)
 
-        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
+        var promise = (this.props.apiCall(data, "post", 'https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
         console.log(promise)
         promise.then((response) => {
             var newApi = this.state.api
@@ -97,7 +99,7 @@ export default class Index extends Component {
         if (topics.size !== 0) data.topic_id = [...topics]
         if (levels.size !== 0) data.level = [...levels]
         if (status.size !== 0) data.mark = [...status]
-        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
+        var promise = (this.props.apiCall(data, "post", 'https://dsa-tracker-450.herokuapp.com/api/filter/general/' + this.state.activePage))
         console.log(promise)
         promise.then((response) => {
             var newApi = this.state.api
@@ -158,9 +160,9 @@ export default class Index extends Component {
             question_id: e.currentTarget.getAttribute('name'),
             mark: e.currentTarget.getAttribute('status')
         }
-        var promise = (this.props.apiCall(data, "post", 'http://https://dsa-tracker-450.herokuapp.com/api/test_question_user_mark_public'))
+        var promise = (this.props.apiCall(data, "post", 'https://dsa-tracker-450.herokuapp.com/api/test_question_user_mark_public'))
         promise.then((response) => {
-            var promise_1 = (this.props.apiCall({}, "get", 'http://https://dsa-tracker-450.herokuapp.com/api/questions_solved'))
+            var promise_1 = (this.props.apiCall({}, "get", 'https://dsa-tracker-450.herokuapp.com/api/questions_solved'))
 
             promise_1.then((response) => {
                 var newApi = this.state.api
@@ -198,6 +200,7 @@ export default class Index extends Component {
 
     render() {
         return (
+            this.props.isLoggedin?(
             <>
                 <Header loggedIn={true} ques={true}/>
                 <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
@@ -264,6 +267,9 @@ export default class Index extends Component {
                     </div>
                 </div>
             </>
+            )
+            :
+            <Redirect to={{pathname: '/dsa-450-tracker/signin'}} />
         )
     }
 }

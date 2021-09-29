@@ -6,7 +6,7 @@ class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://https://dsa-tracker-450.herokuapp.com/api/register",
+            url: "https://dsa-tracker-450.herokuapp.com/api/register",
             data: {
                 username: "admin",
                 email:"",

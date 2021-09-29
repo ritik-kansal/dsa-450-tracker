@@ -11,10 +11,10 @@ class SignIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://https://dsa-tracker-450.herokuapp.com/api/login",
+            url: "https://dsa-tracker-450.herokuapp.com/api/login",
             data: {
-                username: "admin",
-                password: "admin"
+                username: "",
+                password: ""
             }
         }
         

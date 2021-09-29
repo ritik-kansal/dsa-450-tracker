@@ -15,13 +15,13 @@ export default function Header(props) {
                                 <>
                                     <ul className="navbar-nav mx-auto fw-600 f-12">
                                         <li className="nav-item">
-                                            <Link className={"nav-link" + (props.ques ? " active" : "")} aria-current="page" to="/">Ques</Link>
+                                            <Link className={"nav-link" + (props.ques ? " active" : "")} aria-current="page" to="/dsa-450-tracker" isLoggedin={props.loggedIn}>Ques</Link>
                                         </li>
                                         {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Code</Link>
                                         </li> */}
                                         <li className="nav-item">
-                                            <Link className={"nav-link" + (props.performance ? " active" : "")} aria-current="page" to="/profile">Performance</Link>
+                                            <Link className={"nav-link" + (props.performance ? " active" : "")} aria-current="page" to="/dsa-450-tracker/profile" isLoggedin={props.loggedIn}>Performance</Link>
                                         </li>
                                         {/* <li className="nav-item">
                                             <Link className="nav-link" aria-current="page" to="#">Friends</Link>
@@ -29,7 +29,7 @@ export default function Header(props) {
                                     </ul>
                                     <ul className="navbar-nav fw-600 f-12">
                                         <li className="nav-item">
-                                            <Link className="nav-link pr-0" aria-current="page" to="/signin">Logout</Link>
+                                            <Link className="nav-link pr-0" aria-current="page" to="/dsa-450-tracker/signin" isLoggedin={props.loggedIn}>Logout</Link>
                                         </li>
                                     </ul>
 
@@ -39,14 +39,14 @@ export default function Header(props) {
                                     <>
                                         <ul className="navbar-nav ms-auto">
                                             <li className="nav-item bg-orange pr-36 pl-36 br-5">
-                                                <Link className="nav-link white" aria-current="page" to="/signup">Sign Up</Link>
+                                                <Link className="nav-link white" aria-current="page" to="/dsa-450-tracker/signup" isLoggedin={props.loggedIn}>Sign Up</Link>
                                             </li>
                                         </ul>
                                     </>
                                 ) : <>
                                     <ul className="navbar-nav ms-auto">
                                         <li className="nav-item bg-orange pr-36 pl-36 br-5">
-                                            <Link className="nav-link white" aria-current="page" to="/signin">Sign In</Link>
+                                            <Link className="nav-link white" aria-current="page" to="/dsa-450-tracker/signin" isLoggedin={props.loggedIn}>Sign In</Link>
                                         </li>
                                     </ul>
                                 </>

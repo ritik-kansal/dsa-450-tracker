@@ -14,54 +14,13 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            chartData: {},
-            api: {}
+            // chartData: {},
+            api: {},
+            isLoggedin:false
         }
     }
 
-    componentDidMount() { // this.getchartData(); // this should be this.getChartData();
-        this.getChartData();
-    }
-
-    getChartData() { // Ajax calls here
-        this.setState({
-            chartData: {
-                labels: [
-                    'Boston',
-                    'Worcester',
-                    'Springfield',
-                    'Lowell',
-                    'Cambridge',
-                    'New Bedford'
-                ],
-                datasets: [
-                    {
-                        label: 'Population',
-                        data: [
-                            617594,
-                            181045,
-                            153060,
-                            106519,
-                            105162,
-                            95072
-                        ],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)',
-                            'rgba(153, 102, 255, 0.6)',
-                            'rgba(255, 159, 64, 0.6)',
-                            'rgba(255, 99, 132, 0.6)'
-                        ]
-                    }
-                ]
-            }
-        });
-    }
-    test = () => {
-        console.log("hi")
-    }
+    
     saveToken = (data, method, url) => { // var data = JSON.stringify(data);
         const cookies = new Cookies();
         // var token = cookies.get('token')
@@ -82,7 +41,12 @@ class App extends Component {
                 sameSite: 'strict'
 
             });
-            this.props.history.push("/");
+            this.setState({
+                isLoggedin: true,
+            },()=>{
+                this.props.history.push("/dsa-450-tracker");
+            }
+            );
         }).catch(error => {
             console.log(error.response.data);
         });
@@ -110,28 +74,30 @@ class App extends Component {
         return (
             // wrapped in router in index.js 
             <Switch>
-                <Route exact path="/signin">
+                <Route exact path="/dsa-450-tracker/signin">
                     <SignIn saveToken={
                         this.saveToken
                     }
-                        test={
-                            this.test
-                        } />
+                     />
                 </Route>
-                <Route exact path="/signup">
+                <Route exact path="/dsa-450-tracker/signup">
                     <SignUp saveToken={
                         this.saveToken
                     } />
                 </Route>
-                <Route exact path="/profile">
+                <Route exact path="/dsa-450-tracker/profile">
                     <Profile apiCall={
                         this.apiCall
-                    } />
+                    } 
+                    isLoggedin={this.state.isLoggedin}
+                    />
                 </Route>
                 <Route exact path="/dsa-450-tracker">
                     <Index apiCall={
                         this.apiCall
-                    } />
+                    } 
+                    isLoggedin={this.state.isLoggedin}
+                    />
                 </Route>
             </Switch>
         );

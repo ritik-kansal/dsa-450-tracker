@@ -4,13 +4,14 @@ import QuestionsSolved from '../analytics/QuestionsSolved'
 import BarGraph from '../analytics/BarGraph'
 import RadarGraph from '../analytics/RadarGraph'
 import Calendar from 'react-calendar'
+import { Redirect } from 'react-router'
 // import '../../css/ReactCalendar.css'
 
 export default class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            url: "http://https://dsa-tracker-450.herokuapp.com/api/pages/profile",
+            url: "https://dsa-tracker-450.herokuapp.com/api/pages/profile",
             api: {
                 success: false
             },
@@ -86,6 +87,7 @@ export default class Profile extends Component {
 
     render() {
         return (
+            this.props.isLoggedin?(
             <>
                 <Header loggedIn={true} performance={true} />
                 <div className="container pt-32 pr-16 pl-16">
@@ -155,6 +157,9 @@ export default class Profile extends Component {
                 </div>
 
             </>
+            )
+            :
+            <Redirect to={{pathname: '/dsa-450-tracker/signin'}} />
         )
     }
 }
