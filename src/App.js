@@ -51,7 +51,7 @@ class App extends Component {
         }).catch(error => {
             var error_str = "";
             for(var key in error.response.data){
-                error_str+=""+key+" -> "+error.response.data[key]+"\n"
+                error_str+=error.response.data[key]+"\n"
             }
             alert(error_str)
             // console.log(error.response.data);
