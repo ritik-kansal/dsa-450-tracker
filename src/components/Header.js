@@ -7,7 +7,8 @@ class Header extends Component {
         promise.then((response) => {
             this.props.history.push("/dsa-450-tracker/signin");
         }).catch((error) => {
-            console.log(error)
+            this.props.history.push("/dsa-450-tracker/signin");
+            // console.log(error)
         });
     }
 

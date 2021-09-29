@@ -4,13 +4,13 @@ import FilterBox from '../FilterBox';
 import Question from '../Question';
 import QuestionsSolved from '../analytics/QuestionsSolved';
 import Pagination from "react-js-pagination";
-import { Redirect } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import Cookies from 'universal-cookie';
 
 // import Chart from '../Chart';
 
 
-export default class Index extends Component {
+class Index extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -200,7 +200,7 @@ export default class Index extends Component {
 
     render() {
         return (
-            this.props.isLoggedin?(
+            
             <>
                 <Header apiCall={this.props.apiCall} loggedIn={true} ques={true}/>
                 <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
@@ -267,9 +267,8 @@ export default class Index extends Component {
                     </div>
                 </div>
             </>
-            )
-            :
-            <Redirect to={{pathname: '/dsa-450-tracker/signin'}} />
+            
         )
     }
 }
+export default withRouter(Index);

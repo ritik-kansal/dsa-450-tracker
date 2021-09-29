@@ -41,6 +41,7 @@ class App extends Component {
                 sameSite: 'strict'
 
             });
+            // this.props.history.push("/dsa-450-tracker");
             this.setState({
                 isLoggedin: true,
             },()=>{
@@ -51,6 +52,7 @@ class App extends Component {
             console.log(error.response.data);
         });
     }
+
     apiCall = (data, method, url) => {
         const cookies = new Cookies();
         var token = cookies.get('token')
@@ -86,19 +88,26 @@ class App extends Component {
                     } />
                 </Route>
                 <Route exact path="/dsa-450-tracker/profile">
-                    <Profile apiCall={
-                        this.apiCall
-                    } 
-                    isLoggedin={this.state.isLoggedin}
-                    />
+                    {
+                        this.state.isLoggedin ?
+                            <Profile apiCall={this.apiCall} />
+                        :
+                        <SignIn saveToken={
+                            this.saveToken
+                        }
+                         />
+                    }
                 </Route>
                 <Route exact path="/dsa-450-tracker">
-                    <Index apiCall={
-                        this.apiCall
-                    } 
-                    isLoggedin={this.state.isLoggedin}
-                    />
-                </Route>
+                {
+                    this.state.isLoggedin ? 
+                        <Index apiCall={this.apiCall} />
+                    :<SignIn saveToken={
+                        this.saveToken
+                    }
+                     />
+                }
+                        </Route>
             </Switch>
         );
     }

@@ -87,7 +87,7 @@ export default class Profile extends Component {
 
     render() {
         return (
-            this.props.isLoggedin?(
+            // this.props.isLoggedin?(
             <>
                 <Header apiCall={this.props.apiCall} loggedIn={true} performance={true} />
                 <div className="container pt-32 pr-16 pl-16">
@@ -158,9 +158,9 @@ export default class Profile extends Component {
                 </div>
 
             </>
-            )
-            :
-            <Redirect to={{pathname: '/dsa-450-tracker/signin'}} />
+            // )
+            // :
+            // <Redirect to={{pathname: '/dsa-450-tracker/signin'}} />
         )
     }
 }
