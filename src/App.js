@@ -128,7 +128,7 @@ class App extends Component {
                         this.apiCall
                     } />
                 </Route>
-                <Route exact path="/">
+                <Route exact path="/dsa-450-tracker">
                     <Index apiCall={
                         this.apiCall
                     } />
