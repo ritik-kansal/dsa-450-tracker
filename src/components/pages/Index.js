@@ -266,7 +266,6 @@ class Index extends Component {
                     </div>
                 </div>
             </>
-            
         )
     }
 }
