@@ -20,6 +20,21 @@ class App extends Component {
         }
     }
 
+    componentDidMount() { // this.getchartData(); // this should be this.getChartData();
+        var promise = (this.apiCall({}, "get", 'https://dsa-tracker-450.herokuapp.com/api/isauth'))
+        
+        promise.then((response) => {
+
+            console.log(response)
+            this.setState({
+                isLoggedin:true
+            })
+        }).catch((error) => {
+            this.setState({
+                isLoggedin:false
+            })
+        });
+    }
     
     saveToken = (data, method, url) => { // var data = JSON.stringify(data);
         const cookies = new Cookies();
