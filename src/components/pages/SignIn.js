@@ -46,7 +46,7 @@ class SignIn extends Component {
             <>
                 <Header apiCall={this.props.apiCall} signUp={true} />
                 <div className="mx-auto text-center white pt-100 w-65">
-                    <SignSignupContent primary={"Login To Your Account"} secondary={"Login To Your Account"} />
+                    <SignSignupContent primary={"Login To Your Account"} secondary={"Hang tight. We're almost there..."} />
                     <div className="row align-items-center text-start mb-60">
                         <div className="col-4 offset-4" >
                             <form onSubmit={(e) => this.submit(e)}>

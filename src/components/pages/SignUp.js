@@ -43,7 +43,7 @@ class SignUp extends Component {
             <>
                 <Header apiCall={this.props.apiCall} signUp={false} />
                 <div className="mx-auto text-center white pt-100 w-65">
-                    <SignSignupContent primary={"Sign Up and Stay Connected"} secondary={"Sign Up and Stay Connected"} />
+                    <SignSignupContent primary={"Sign Up and Stay Connected"} secondary={"Hang tight. We're almost there..."} />
                     <form onSubmit={(e) => this.submit(e)}>
                     <div className="row align-items-center text-start mb-60">
                         <div className="col-4">
