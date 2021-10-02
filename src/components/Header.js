@@ -18,7 +18,7 @@ class Header extends Component {
             <div>
             <nav className="navbar r-nav navbar-expand-lg navbar-dark bg-secondary-black pt-16 pb-16">
                 <div className="container">
-                    <Link className="navbar-brand" to="/">Dsa-450-Tracker</Link>
+                    <Link className="navbar-brand" to="/dsa-450-tracker">Dsa-450-Tracker</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
