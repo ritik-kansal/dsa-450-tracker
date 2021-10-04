@@ -226,9 +226,9 @@ class Index extends Component {
                             </div>
                             <div className="col-3"></div>
                             <div className="col-3" style={{"padding":0}}>
-                                <input className="bg-secondary-black gray search-bar pl-8" placeholder="search question"></input>
+                                <input className="bg-secondary-black gray search-bar pl-8 w-75" placeholder="search question"></input>
                                 {/* <input className="text-start bg-orange white" type="submit" value="search" onClick={(e)=>this.search(e)}/> */}
-                                <button className="text-start bg-orange white search-bar" type="submit" onClick={(e)=>this.search(e)}>
+                                <button className="text-center bg-orange white search-bar w-25" type="submit" onClick={(e)=>this.search(e)}>
                                     search
                                 </button>
                             </div>
