@@ -39,9 +39,6 @@ function Question(props) {
                             <span className="r-radio"></span>
 
                         </label>
-                        <div className="friends-stats gray float-end">
-                            {question_data.friends} of your friends have already solved the ques
-                        </div>
                     </div>
                 </div>
             </div>
