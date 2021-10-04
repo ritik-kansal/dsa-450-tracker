@@ -6,6 +6,7 @@ import QuestionsSolved from '../analytics/QuestionsSolved';
 import Pagination from "react-js-pagination";
 import { Redirect, withRouter } from 'react-router';
 import Cookies from 'universal-cookie';
+import Loader from '../Loader';
 
 // import Chart from '../Chart';
 
@@ -259,7 +260,7 @@ class Index extends Component {
                                         // console.log(question)
                                         return <Question key={question.id} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update} />
                                     })
-                                    : ""
+                                    : <Loader/>
                             }
 
                         </div>
