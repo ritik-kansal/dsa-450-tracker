@@ -177,6 +177,7 @@ class Index extends Component {
                         questions_update: false, // no need to relect this change on frontend as it's already there
                     }
                 })
+                this.filter_data()
             }).catch((error) => {
                 this.setState({
                     api: {
