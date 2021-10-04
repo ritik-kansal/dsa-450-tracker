@@ -240,6 +240,22 @@ body {
   font-size: 0.8rem;
 }
 
+.r-overflow {
+  height: 76vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #565656 #0A0A0A;
+}
+.r-overflow::-webkit-scrollbar {
+  width: 2px;
+}
+.r-overflow::-webkit-scrollbar-thumb {
+  background-color: #565656;
+}
+.r-overflow::-webkit-scrollbar-track {
+  background-color: #0A0A0A;
+}
+
 .r-nav .navbar-nav .nav-link {
   color: #565656;
   padding-left: 18px;

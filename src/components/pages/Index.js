@@ -207,7 +207,7 @@ class Index extends Component {
                 {
                     this.state.api.success ?
 
-                        <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
+                        <div className="container pt-32 pr-16 pl-16" >
                         <div className="row pb-32">
                             <div className="col-6 gray br-5 pl-0">
                                 <div className="row r-tabs text-center">
@@ -234,13 +234,13 @@ class Index extends Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-3 pl-0 pr-16">
+                            <div className="col-3 pl-0 pr-0 r-overflow">
                                 <div className="mb-32">
                                     <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} count={this.state.api.apiData.data.questions_solved.count}  question_chart_update={this.state.child_conditions.question_chart_update} flag={true} />
                                 </div>
                                 <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update} />
                             </div>
-                            <div className="col-9 pl-16 pr-0">
+                            <div className="col-9 pl-16 pr-0 r-overflow">
                                 {
                                     this.state.api.apiData.data.questions_data.questions.map((question) => {
                                         // console.log(question)
