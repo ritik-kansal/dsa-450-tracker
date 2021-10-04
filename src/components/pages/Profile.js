@@ -122,11 +122,11 @@ export default class Profile extends Component {
 
                                         </div> */}
 
-                                        <div className="col-4 pl-16 pr-16">
+                                        <div className="col-4 pl-0">
                                             <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} count={this.state.api.apiData.data.questions_solved.count} question_chart_update={this.state.child_conditions.question_chart_update} flag={true} />
                                             
                                         </div>
-                                        <div className="col-4 pl-16">
+                                        <div className="col-4 ">
                                             <QuestionsSolved chartData={this.state.api.apiData.data.question_marked.marks} count={this.state.api.apiData.data.question_marked.count} question_chart_update={this.state.child_conditions.question_chart_update} flag={false} />
                                             
                                         </div>
