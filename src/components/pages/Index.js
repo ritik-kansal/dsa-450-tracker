@@ -203,71 +203,57 @@ class Index extends Component {
         return (
             <>
                 <Header apiCall={this.props.apiCall} loggedIn={true} ques={true}/>
-                <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
-                    <div className="row pb-32">
-                        <div className="col-6 gray br-5 pl-0">
-                            <div className="row r-tabs text-center">
-                                {/* <div className="col">All Ques</div>
-                                <div className="col">All Ques</div>
-                                <div className="col">All Ques</div>
-                                <div className="col">All Ques</div> */}
-                                {
-                                    this.state.api.success ?
-                                        (
-                                            <Pagination
-                                                activePage={this.state.activePage}
-                                                itemsCountPerPage={10}
-                                                totalItemsCount={this.state.api.apiData.data.questions_data.total_length}
-                                                pageRangeDisplayed={5}
-                                                itemClass="page-item"
-                                                linkClass="page-link"
-                                                onChange={this.handlePageChange.bind(this)}
-                                            />
-                                        )
-                                        : ""
-                                }
+                {
+                    this.state.api.success ?
+
+                        <div className="container pt-32 pr-16 pl-16" style={{ minHeight: "100vh" }}>
+                        <div className="row pb-32">
+                            <div className="col-6 gray br-5 pl-0">
+                                <div className="row r-tabs text-center">
+
+                                    <Pagination
+                                    activePage={this.state.activePage}
+                                    itemsCountPerPage={10}
+                                    totalItemsCount={this.state.api.apiData.data.questions_data.total_length}
+                                    pageRangeDisplayed={5}
+                                    itemClass="page-item"
+                                    linkClass="page-link"
+                                    onChange={this.handlePageChange.bind(this)}
+                                    />
+
+                                </div>
+                            </div>
+                            <div className="col-3"></div>
+                            <div className="col-3" style={{"padding":0}}>
+                                <input className="bg-secondary-black gray search-bar pl-8" placeholder="search question"></input>
+                                {/* <input className="text-start bg-orange white" type="submit" value="search" onClick={(e)=>this.search(e)}/> */}
+                                <button className="text-start bg-orange white search-bar" type="submit" onClick={(e)=>this.search(e)}>
+                                    search
+                                </button>
                             </div>
                         </div>
-                        <div className="col-3"></div>
-                        <div className="col-3" style={{"padding":0}}>
-                            <input className="bg-secondary-black gray search-bar pl-8" placeholder="search question"></input>
-                            {/* <input className="text-start bg-orange white" type="submit" value="search" onClick={(e)=>this.search(e)}/> */}
-                            <button className="text-start bg-orange white search-bar" type="submit" onClick={(e)=>this.search(e)}>
-                                search
-                            </button>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-3 pl-0 pr-16">
-                            {
-                                this.state.api.success ?
-                                    (
-                                        <>
-                                            <div className="mb-32">
-                                                <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} count={this.state.api.apiData.data.questions_solved.count}  question_chart_update={this.state.child_conditions.question_chart_update} flag={true} />
-                                            </div>
-                                            <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update} />
-                                        </>
-                                    )
-                                    : ""}
-
-
-                        </div>
-                        <div className="col-9 pl-16 pr-0">
-                            {
-                                this.state.api.success ?
+                        <div className="row">
+                            <div className="col-3 pl-0 pr-16">
+                                <div className="mb-32">
+                                    <QuestionsSolved chartData={this.state.api.apiData.data.questions_solved.difficulty_levels} count={this.state.api.apiData.data.questions_solved.count}  question_chart_update={this.state.child_conditions.question_chart_update} flag={true} />
+                                </div>
+                                <FilterBox topics={this.state.api.apiData.data.topics} filterData={this.filter} filter_update={this.state.child_conditions.filter_update} />
+                            </div>
+                            <div className="col-9 pl-16 pr-0">
+                                {
                                     this.state.api.apiData.data.questions_data.questions.map((question) => {
                                         // console.log(question)
                                         return <Question key={question.id} question_data={question} status_update={this.status_update} questions_update={this.state.child_conditions.questions_update} />
                                     })
-                                    : <Loader/>
-                            }
-
+                                }   
+                            </div>
                         </div>
                     </div>
-                </div>
+                : 
+                    <Loader/>
+                }
             </>
-        )
+            )
     }
 }
 export default withRouter(Index);
